@@ -1,4 +1,6 @@
 import os
+
+from flask.ext.httpauth import HTTPBasicAuth
 from flask_restful import Api
 from flask import Flask, render_template, make_response, jsonify
 
@@ -9,6 +11,7 @@ app.config['DEBUG'] = True
 app.config['WTF_CSRF_ENABLED'] = True
 app.config['SECRET_KEY'] = 'you-will-never-guess'
 
+auth = HTTPBasicAuth()
 api = Api(app)
 
 

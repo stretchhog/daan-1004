@@ -1,4 +1,5 @@
 from google.appengine.ext import ndb
+from passlib.apps import custom_app_context as pwd_context
 
 
 class Painting(ndb.Model):

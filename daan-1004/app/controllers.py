@@ -4,7 +4,7 @@ from app.forms import PaintingCreateForm, PaintingEditForm
 from app.models import Painting
 from flask import request, render_template, make_response, redirect, send_file
 from flask.ext.restful import Resource, abort
-from main import api
+from main import api, auth
 from base64 import b64encode
 
 
@@ -16,7 +16,6 @@ class PaintingList(Resource):
 
 
 class PaintingDelete(Resource):
-	@login_required
 	def get(self, key):
 		qry = Painting.query(Painting.key == key)
 		qry.fetch(1)[0].delete()
@@ -24,7 +23,6 @@ class PaintingDelete(Resource):
 
 
 class PaintingDetail(Resource):
-	@login_required
 	def get(self, key):
 		qry = Painting.query(Painting.key == key)
 		painting = qry.fetch(1)[0]
@@ -34,7 +32,6 @@ class PaintingDetail(Resource):
 		form.key.data = painting.key
 		return make_response(render_template('paintings/detail.html', painting=painting, form=form))
 
-	@login_required
 	def post(self):
 		form = PaintingEditForm(data=request.get_json())
 		qry = Painting.query(Painting.key == form.key.data)
@@ -46,12 +43,10 @@ class PaintingDetail(Resource):
 
 
 class PaintingCreate(Resource):
-	@login_required
 	def get(self):
-		form = PaintingCreateForm(data=request.get_json())
+		form = PaintingCreateForm()
 		return make_response(render_template('paintings/create.html', form=form))
 
-	@login_required
 	def post(self):
 		form = PaintingCreateForm(data=request.get_json())
 		if form.validate():
@@ -71,6 +66,6 @@ class PaintingCreate(Resource):
 api.add_resource(PaintingList, '/paintings', endpoint='paintings_list')
 
 # admin pages
-api.add_resource(PaintingCreate, '/paintings/admin/create', endpoint='painting_create')
-api.add_resource(PaintingDetail, '/paintings/admin/<int:key>', endpoint='painting_detail')
-api.add_resource(PaintingDelete, '/paintings/admin/delete/<int:key>', endpoint='painting_delete')
+api.add_resource(PaintingCreate, '/admin/paintings/create', endpoint='painting_create')
+api.add_resource(PaintingDetail, '/admin/paintings/<int:key>', endpoint='painting_detail')
+api.add_resource(PaintingDelete, '/admin/paintings/delete/<int:key>', endpoint='painting_delete')
