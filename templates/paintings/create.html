@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+{% block body %}
+<form action="" method="post" name="create-painting">
+    {{ form.hidden_tag() }}
+    <div> {{ form.title }}</div>
+	<div> {{ form.image }}</div>
+	<div> {{ form.notes }}</div>
+    <div><input type="submit" value="Toevoegen"></div>
+</form>
+<hr>
+{% endblock %}

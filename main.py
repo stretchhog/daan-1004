@@ -37,4 +37,4 @@ def after_request(response):
 	return response
 
 # import routes
-from comics import controllers
+from app import controllers
