@@ -1,5 +1,4 @@
 import os
-from flask_httpauth import HTTPBasicAuth
 from flask_restful import Api
 from flask import Flask, render_template, make_response, jsonify
 
@@ -10,7 +9,6 @@ app.config['DEBUG'] = True
 app.config['WTF_CSRF_ENABLED'] = True
 app.config['SECRET_KEY'] = 'you-will-never-guess'
 
-auth = HTTPBasicAuth()
 api = Api(app)
 
 
@@ -35,6 +33,7 @@ def after_request(response):
 	response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
 	response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
 	return response
+
 
 # import routes
 from app import controllers

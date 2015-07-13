@@ -1,5 +1,3 @@
-import io
-
 from google.appengine.ext.webapp.util import login_required
 
 from app.forms import PaintingCreateForm, PaintingEditForm
