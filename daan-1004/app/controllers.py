@@ -1,11 +1,9 @@
-from google.appengine.ext.webapp.util import login_required
-
 from app.forms import PaintingCreateForm, PaintingEditForm
-from app.models import Painting
-from flask import request, render_template, make_response, redirect, send_file
+from app.models import Painting, User
+from flask import request, render_template, make_response, redirect, g
 from flask.ext.restful import Resource, abort
-from main import api, auth
 from base64 import b64encode
+from main import api, auth
 
 
 class PaintingList(Resource):
@@ -15,7 +13,17 @@ class PaintingList(Resource):
 			render_template("paintings/list.html", title="Schilderijen", paintings=paintings))
 
 
+@auth.verify_password
+def verify_password(email, password):
+	user = User.query(User.email == email).fetch()[0]
+	if not user:
+		return False
+	g.user = user
+	return user.password is password
+
+
 class PaintingDelete(Resource):
+	@auth.login_required
 	def get(self, key):
 		qry = Painting.query(Painting.key == key)
 		qry.fetch(1)[0].delete()
@@ -23,6 +31,7 @@ class PaintingDelete(Resource):
 
 
 class PaintingDetail(Resource):
+	@auth.login_required
 	def get(self, key):
 		qry = Painting.query(Painting.key == key)
 		painting = qry.fetch(1)[0]
@@ -32,6 +41,7 @@ class PaintingDetail(Resource):
 		form.key.data = painting.key
 		return make_response(render_template('paintings/detail.html', painting=painting, form=form))
 
+	@auth.login_required
 	def post(self):
 		form = PaintingEditForm(data=request.get_json())
 		qry = Painting.query(Painting.key == form.key.data)
@@ -43,10 +53,12 @@ class PaintingDetail(Resource):
 
 
 class PaintingCreate(Resource):
+	@auth.login_required
 	def get(self):
 		form = PaintingCreateForm()
 		return make_response(render_template('paintings/create.html', form=form))
 
+	@auth.login_required
 	def post(self):
 		form = PaintingCreateForm(data=request.get_json())
 		if form.validate():
@@ -60,7 +72,6 @@ class PaintingCreate(Resource):
 		painting.image = b64encode(image)
 		painting.put()
 		return redirect(api.url_for(PaintingList), 301)
-
 
 # public pages
 api.add_resource(PaintingList, '/paintings', endpoint='paintings_list')

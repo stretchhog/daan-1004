@@ -1,8 +1,7 @@
 from flask.ext.wtf import Form
 import re
-from wtforms import StringField, IntegerField, TextField, TextAreaField, FileField, HiddenField
+from wtforms import StringField, TextAreaField, FileField, HiddenField
 from wtforms.validators import DataRequired, regexp
-from wtforms_components import validators
 
 
 class PaintingCreateForm(Form):
@@ -19,3 +18,8 @@ class PaintingEditForm(Form):
 	title = StringField('Titel', validators=[DataRequired()])
 	notes = TextAreaField('Beschrijving')
 	key = HiddenField('key')
+
+
+class SessionCreateForm(Form):
+	email = StringField('email', validators=[DataRequired()])
+	password = StringField('password', validators=[DataRequired()])

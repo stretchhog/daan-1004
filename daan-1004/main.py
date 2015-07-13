@@ -1,8 +1,8 @@
 import os
-
 from flask.ext.httpauth import HTTPBasicAuth
+
 from flask_restful import Api
-from flask import Flask, render_template, make_response, jsonify
+from flask import Flask, render_template, make_response
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
@@ -10,6 +10,7 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['WTF_CSRF_ENABLED'] = True
 app.config['SECRET_KEY'] = 'you-will-never-guess'
+
 
 auth = HTTPBasicAuth()
 api = Api(app)
