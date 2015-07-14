@@ -1,9 +1,14 @@
-from app.forms import PaintingCreateForm, PaintingEditForm
-from app.models import Painting, User
-from flask import request, render_template, make_response, redirect, g
-from flask.ext.restful import Resource, abort
 from base64 import b64encode
+from flask import request, make_response, render_template
+from flask.ext.restful import Resource
+from werkzeug.exceptions import abort
+from werkzeug.utils import redirect
+from app.forms import PaintingCreateForm
+from app.models import Painting
+from app.painting_service import update_painting, get_painting
 from main import api, auth
+
+__author__ = 'Stretchhog'
 
 
 class PaintingList(Resource):
@@ -11,15 +16,6 @@ class PaintingList(Resource):
 		paintings = Painting.query().order(-Painting.date_added).fetch()
 		return make_response(
 			render_template("paintings/list.html", title="Schilderijen", paintings=paintings))
-
-
-@auth.verify_password
-def verify_password(email, password):
-	user = User.query(User.email == email).fetch()[0]
-	if not user:
-		return False
-	g.user = user
-	return user.password is password
 
 
 class PaintingDelete(Resource):
@@ -33,23 +29,15 @@ class PaintingDelete(Resource):
 class PaintingDetail(Resource):
 	@auth.login_required
 	def get(self, key):
-		qry = Painting.query(Painting.key == key)
-		painting = qry.fetch(1)[0]
-		form = PaintingEditForm()
-		form.title.data = painting.title
-		form.notes.data = painting.notes
-		form.key.data = painting.key
+		painting, form = get_painting(key)
 		return make_response(render_template('paintings/detail.html', painting=painting, form=form))
 
 	@auth.login_required
 	def post(self):
-		form = PaintingEditForm(data=request.get_json())
-		qry = Painting.query(Painting.key == form.key.data)
-		painting = qry.fetch(1)[0]
-		painting.title = form.title.data
-		painting.notes = form.notes.data
-		painting.put()
-		return redirect(api.url_for(PaintingList), 301)
+		data = request.get_json()
+		key = update_painting(data)
+		if key is not None:
+			return redirect(api.url_for(PaintingList), 301)
 
 
 class PaintingCreate(Resource):
@@ -73,10 +61,8 @@ class PaintingCreate(Resource):
 		painting.put()
 		return redirect(api.url_for(PaintingList), 301)
 
-# public pages
-api.add_resource(PaintingList, '/paintings', endpoint='paintings_list')
 
-# admin pages
+api.add_resource(PaintingList, '/paintings', endpoint='paintings_list')
 api.add_resource(PaintingCreate, '/admin/paintings/create', endpoint='painting_create')
 api.add_resource(PaintingDetail, '/admin/paintings/<int:key>', endpoint='painting_detail')
 api.add_resource(PaintingDelete, '/admin/paintings/delete/<int:key>', endpoint='painting_delete')

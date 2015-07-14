@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% set active_page = "register" %}
+{% block body %}
+    <form action="" method="post" name="register">
+		{{ form.hidden_tag() }}
+        <div> {{ form.email }}</div>
+        <div> {{ form.password }}</div>
+        <div><input type="submit" value="Register"></div>
+    </form>
+{% endblock %}

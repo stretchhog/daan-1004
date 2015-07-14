@@ -1,6 +1,6 @@
 from flask.ext.wtf import Form
 import re
-from wtforms import StringField, TextAreaField, FileField, HiddenField
+from wtforms import StringField, TextAreaField, FileField, HiddenField, PasswordField
 from wtforms.validators import DataRequired, regexp
 
 
@@ -22,4 +22,9 @@ class PaintingEditForm(Form):
 
 class SessionCreateForm(Form):
 	email = StringField('email', validators=[DataRequired()])
-	password = StringField('password', validators=[DataRequired()])
+	password = PasswordField('password', validators=[DataRequired()])
+
+
+class UserCreateForm(Form):
+	email = StringField('email')
+	password = PasswordField('password')

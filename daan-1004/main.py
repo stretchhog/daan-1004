@@ -1,14 +1,14 @@
 import os
-from flask.ext.httpauth import HTTPBasicAuth
 
 from flask_restful import Api
 from flask import Flask, render_template, make_response
+from flask.ext.httpauth import HTTPBasicAuth
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['WTF_CSRF_ENABLED'] = True
+app.config['WTF_CSRF_ENABLED'] = False
 app.config['SECRET_KEY'] = 'you-will-never-guess'
 
 
@@ -40,4 +40,4 @@ def after_request(response):
 
 
 # import routes
-from app import controllers
+from app import handler
