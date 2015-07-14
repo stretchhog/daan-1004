@@ -1,8 +1,9 @@
 import os
+from flask.ext.login import LoginManager
 
 from flask_restful import Api
 from flask import Flask, render_template, make_response
-from flask.ext.httpauth import HTTPBasicAuth
+from app.models import User
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
@@ -11,14 +12,11 @@ app.config['DEBUG'] = True
 app.config['WTF_CSRF_ENABLED'] = False
 app.config['SECRET_KEY'] = 'you-will-never-guess'
 
-
-auth = HTTPBasicAuth()
 api = Api(app)
 
-
-@app.route("/")
-def index():
-	return render_template("home.html")
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 
 @app.errorhandler(404)
@@ -38,6 +36,5 @@ def after_request(response):
 	response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
 	return response
 
-
 # import routes
-from app import handler
+from app.handlers import user_handler, home_handler, painting_handler

@@ -20,7 +20,7 @@ class PaintingEditForm(Form):
 	key = HiddenField('key')
 
 
-class SessionCreateForm(Form):
+class LoginForm(Form):
 	email = StringField('email', validators=[DataRequired()])
 	password = PasswordField('password', validators=[DataRequired()])
 
