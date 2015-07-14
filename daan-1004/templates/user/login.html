@@ -3,8 +3,22 @@
 {% block body %}
 	<form action="" method="post" name="login">
 		{{ form.hidden_tag() }}
-		<div> {{ form.email }}</div>
+		<div> {{ form.user }}</div>
+		{% if form.user.errors %}
+			<ul class="errors">
+				{% for error in form.user.errors %}
+					<li>{{ error }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
 		<div> {{ form.password }}</div>
+		{% if form.password.errors %}
+			<ul class="errors">
+				{% for error in form.password.errors %}
+					<li>{{ error }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
 		<div><input type="submit" value="Login"></div>
 	</form>
 {% endblock %}

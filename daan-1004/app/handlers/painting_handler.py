@@ -5,7 +5,7 @@ from werkzeug.utils import redirect
 
 from app.forms import PaintingCreateForm
 from app.services import painting_service as service
-from main import api, auth
+from main import api
 
 __author__ = 'Stretchhog'
 

@@ -38,3 +38,6 @@ def after_request(response):
 
 # import routes
 from app.handlers import user_handler, home_handler, painting_handler
+
+if __name__ == '__main__':
+	app.run()

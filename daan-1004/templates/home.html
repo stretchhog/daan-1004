@@ -1,5 +1,10 @@
 {% extends "layout.html" %}
 {% set active_page = "home" %}
-Thuis
 {% block body %}
+    <h1>Home</h1>
+    {% if current_user.is_authenticated() %}
+        <p>Hi {{ current_user.user }}!</p>
+    {% else %}
+        <p> Hello anonymous</p>
+    {% endif %}
 {% endblock %}

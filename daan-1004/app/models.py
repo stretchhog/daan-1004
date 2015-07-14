@@ -1,5 +1,5 @@
 from google.appengine.ext import ndb
-from wtforms_components import Email
+from flask import jsonify
 
 
 class Painting(ndb.Model):
@@ -10,5 +10,17 @@ class Painting(ndb.Model):
 
 
 class User(ndb.Model):
-	email = ndb.StringProperty(required=True, validator=Email())
+	user = ndb.StringProperty(required=True)
 	password = ndb.StringProperty(required=True)
+
+	def is_authenticated(self):
+		return True
+
+	def is_active(self):
+		return True
+
+	def is_anonymous(self):
+		return False
+
+	def get_id(self):
+		return self.user

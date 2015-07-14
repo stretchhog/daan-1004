@@ -21,10 +21,10 @@ class PaintingEditForm(Form):
 
 
 class LoginForm(Form):
-	email = StringField('email', validators=[DataRequired()])
+	user = StringField('user', validators=[DataRequired()])
 	password = PasswordField('password', validators=[DataRequired()])
 
 
 class UserCreateForm(Form):
-	email = StringField('email')
-	password = PasswordField('password')
+	user = StringField(label='user', description="username", validators=[DataRequired()])
+	password = PasswordField(label='password', description="password", validators=[DataRequired()])

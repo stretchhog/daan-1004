@@ -2,23 +2,24 @@
 {% set active_page = "paintings" %}
 {% block body %}
 
-{% for painting in paintings %}
-<div class="panel panel-default">
-	<div class="panel-heading">
-		{{ painting.title }}
-	</div>
-	<div class="panel-body">
-		<div class="col-xs-5">
-			<img src="data:;base64,{{painting.image}}" class="img-responsive"/>
-		</div>
-		<div class="col-xs-7" align="left">
-			<p>{{ painting.notes }}</p>
-			{{ if (admin) }}
-			<a href="{{url_for('painting_detail', key=painting.key)}}" class="btn btn-info">Edit</a>
-			<a href="{{url_for('painting_delete', key=painting.key)}}" class="btn btn-danger">Delete</a>
-			{{ endif }}
-		</div>
-	</div>
-</div>
-{% endfor%}
+    <h1>Schilderijen</h1>
+    {% for painting in paintings %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{ painting.title }}
+            </div>
+            <div class="panel-body">
+                <div class="col-xs-5">
+                    <img src="data:;base64,{{ painting.image }}" class="img-responsive"/>
+                </div>
+                <div class="col-xs-7" align="left">
+                    <p>{{ painting.notes }}</p>
+                    {{ if (admin) }}
+                    <a href="{{ url_for('painting_detail', key=painting.key) }}" class="btn btn-info">Edit</a>
+                    <a href="{{ url_for('painting_delete', key=painting.key) }}" class="btn btn-danger">Delete</a>
+                    {{ endif }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
