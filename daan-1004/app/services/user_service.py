@@ -1,10 +1,14 @@
 import logging
+from flask import make_response, render_template
+from flask.ext.login import login_user, logout_user
 from google.appengine.ext import ndb
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import redirect
 from app.forms import UserCreateForm, LoginForm
+from app.handlers.home_handler import Home
 from app.models import User
 from app.serializers import entity_from_dict
-from main import login_manager
+from main import login_manager, api
 from google.appengine.api.logservice import logservice
 
 __author__ = 'Stretchhog'
@@ -37,8 +41,21 @@ def register_user(data):
 
 
 def login(data):
-	form = LoginForm()
-	if not form.validate_on_submit():
-		return form.errors, 422
+	form = LoginForm(data=data)
+	error = None
+	if form.validate_on_submit():
+		res = User.query(User.user == form.user.data).fetch(1)
+		if len(res) == 1 and check_password(res[0].password, form.password.data):
+			user = res[0]
+			login_user(user)
+			retval = redirect(api.url_for(Home))
+		else:
+			error = 'Invalid credentials. Please try again.'
+			retval = make_response(render_template('user/login.html', form=form, error=error))
+	else:
+		retval = make_response(render_template('user/login.html', form=form, error=error))
+	return retval
 
-	res = User.query(User.user is form.user.data).fetch(0)
+def logout():
+	logout_user()
+	return redirect(api.url_for(Home))

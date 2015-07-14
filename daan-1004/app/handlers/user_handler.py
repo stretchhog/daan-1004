@@ -1,15 +1,12 @@
-from flask.ext.login import login_user, logout_user, login_required, user_logged_in, current_user
+from flask.ext.login import login_required, current_user
 from app.forms import UserCreateForm, LoginForm
 from app.handlers.home_handler import Home
-from app.models import User
-from flask import render_template, make_response, request, flash
+from flask import render_template, make_response, request
 from flask.ext.restful import Resource
 from werkzeug.utils import redirect
-from app.services.user_service import check_password
-from main import api, login_manager
+from app.services.user_service import login, logout
+from main import api
 from app.services import user_service as service
-import logging
-from google.appengine.api.logservice import logservice
 
 
 class Register(Resource):
@@ -17,7 +14,6 @@ class Register(Resource):
 		return make_response(render_template("user/register.html", form=UserCreateForm()))
 
 	def post(self):
-		print "JSON:", request.get_json()
 		service.register_user(request.get_json())
 		return redirect(api.url_for(Home))
 
@@ -29,27 +25,13 @@ class Login(Resource):
 		return make_response(render_template("user/login.html", form=LoginForm()))
 
 	def post(self):
-		error = None
-		data = request.get_json()
-		form = LoginForm(data=data)
-		if form.validate_on_submit():
-			res = User.query(User.user == form.user.data).fetch(1)
-			if len(res) == 1 and check_password(res[0].password, form.password.data):
-				user = res[0]
-				login_user(user)
-				flash('You were logged in')
-				return redirect(api.url_for(Home))
-			else:
-				error = 'Invalid credentials. Please try again.'
-		return make_response(render_template('user/login.html', form=form, error=error))
+		return login(request.get_json())
 
 
 class Logout(Resource):
 	@login_required
 	def get(self):
-		logout_user()
-		flash('You were logged out.')
-		return redirect(api.url_for(Home))
+		return logout()
 
 
 class BadRequest(Resource):
