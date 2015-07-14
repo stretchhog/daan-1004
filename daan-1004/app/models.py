@@ -1,5 +1,6 @@
 from google.appengine.ext import ndb
 from flask import jsonify
+from app.serializers import entity_to_dict
 
 
 class Painting(ndb.Model):
@@ -23,4 +24,4 @@ class User(ndb.Model):
 		return False
 
 	def get_id(self):
-		return self.user
+		return entity_to_dict(self)

@@ -5,6 +5,7 @@ from app.models import User
 from flask import render_template, make_response, request, flash
 from flask.ext.restful import Resource
 from werkzeug.utils import redirect
+from app.services.user_service import check_password
 from main import api, login_manager
 from app.services import user_service as service
 import logging
@@ -33,7 +34,7 @@ class Login(Resource):
 		form = LoginForm(data=data)
 		if form.validate_on_submit():
 			res = User.query(User.user == form.user.data).fetch(1)
-			if len(res) == 1 and res[0].password == form.password.data:
+			if len(res) == 1 and check_password(res[0].password, form.password.data):
 				user = res[0]
 				login_user(user)
 				flash('You were logged in')
