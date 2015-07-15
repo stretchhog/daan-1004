@@ -1,6 +1,7 @@
 import os
+from google.appengine.api import users
 from flask_restful import Api
-from flask import Flask, render_template, make_response, redirect
+from flask import Flask, render_template, make_response, redirect, session
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
@@ -13,10 +14,15 @@ api = Api(app)
 # import routes
 from app.handlers import home_handler, painting_handler
 
-
-@app.route('/')
-def root():
-	return redirect(api.url_for(home_handler.Home))
+@app.before_request
+def before_request():
+	user = users.get_current_user()
+	if user:
+		session['logged_in'] = True
+		session['user'] = user
+	else:
+		session['logged_in'] = False
+		session['user'] = None
 
 
 @app.errorhandler(404)

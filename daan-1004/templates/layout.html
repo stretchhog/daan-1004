@@ -8,52 +8,6 @@
 </head>
 <body>
 
-{% set navigation_bar = [
-    ('/', 'home', 'Home'),
-    (url_for('paintings_list'), 'paintings', 'Schilderijen'),
-    ('/about/', 'about', 'About')
-] -%}
-
-{% macro form_field(field) -%}
-	{% set with_label = kwargs.pop('with_label', False) %}
-	{% set placeholder = '' %}
-	{% if not with_label %}
-		{% set placeholder = field.label.text %}
-	{% endif %}
-    <div class="control-group {% if field.errors %}error{% endif %}">
-		{% if with_label %}
-            <label for="{{ field.id }}" class="control-label">
-				{{ field.label.text }}{% if field.flags.required %} *{% endif %}:
-            </label>
-		{% endif %}
-        <div class="controls">
-			{% set class_ = kwargs.pop('class_', '') %}
-			{% if field.flags.required %}
-				{% set class_ = class_ + ' required' %}
-			{% endif %}
-			{% if field.type == 'BooleanField' %}
-                <label class="checkbox">
-					{{ field(class_=class_, **kwargs) }}
-					{{ field.label.text|safe }}
-                </label>
-			{% else %}
-				{% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
-					{% set class_ = class_ + ' input-xlarge' %}
-				{% elif field.type == 'FileField' %}
-					{% set class_ = class_ + ' input-file' %}
-				{% endif %}
-				{{ field(class_=class_, placeholder=placeholder, **kwargs) }}
-			{% endif %}
-			{% if field.errors %}
-                <span class="error help-inline">{{ field.errors|join(', ') }}</span>
-			{% endif %}
-			{% if field.description %}
-                <p class="help-block">{{ field.description|safe }}</p>
-			{% endif %}
-        </div>
-    </div>
-{%- endmacro %}
-
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -71,12 +25,19 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-				{% for href, id, caption in navigation_bar %}
+				{% for href, id, caption in navigation_bar_left %}
                     <li{% if id == active_page %} class="active"{% endif %}>
                         <a href="{{ href|e }}">{{ caption|e }}</a>
                     </li>
 				{% endfor %}
             </ul>
+			<ul class="nav navbar-nav navbar-right">
+				{% for href, id, caption in navigation_bar_right %}
+					<li{% if id == active_page %} class="active"{% endif %}>
+						<a href="{{ href|e }}">{{ caption|e }}</a>
+					</li>
+				{% endfor %}
+			</ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
