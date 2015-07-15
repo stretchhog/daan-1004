@@ -3,7 +3,7 @@ from google.appengine.ext import ndb
 
 class Painting(ndb.Model):
 	title = ndb.StringProperty()
-	image = ndb.BlobProperty()
+	blob_key = ndb.BlobKeyProperty()
 	notes = ndb.StringProperty()
 	date_added = ndb.DateTimeProperty(auto_now_add=True)
 

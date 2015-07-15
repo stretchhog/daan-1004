@@ -1,5 +1,5 @@
 from base64 import b64encode
-from werkzeug.exceptions import abort
+from google.appengine.ext import blobstore
 from app.forms import PaintingEditForm, PaintingCreateForm
 from app.models import Painting
 
@@ -37,4 +37,6 @@ def delete_painting(id):
 
 
 def get_paintings():
-	return Painting.query().order(-Painting.date_added).fetch()
+	paintings = Painting.query().order(-Painting.date_added).fetch()
+	images = [blobstore.get(painting.blob_key) for painting in paintings]
+	return paintings, images

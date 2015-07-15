@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
-<form action="" method="post" name="create-painting" enctype=multipart/form-data>
+<form action="{{ upload_url }}" method="post" name="create-painting" enctype=multipart/form-data>
     {{ form.hidden_tag() }}
     <div> {{ form.title }}</div>
-	<div> {{ form.image }}</div>
+	<input type="file" name="file">
 	<div> {{ form.notes }}</div>
-    <div><input type="submit" value="Toevoegen"></div>
+    <div><input type="submit" name="submit" value="Toevoegen"></div>
 </form>
 <hr>
 {% endblock %}
