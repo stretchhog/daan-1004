@@ -19,3 +19,8 @@ class PaintingEditForm(Form):
 	notes = TextAreaField('Beschrijving')
 	key = HiddenField('key')
 
+
+class MusicForm(Form):
+	title = StringField('title', validators=[DataRequired()])
+	youtube = StringField('youtube')
+	notes = TextAreaField('notes')

@@ -5,39 +5,35 @@ from app.models import Painting
 
 __author__ = 'Stretchhog'
 
-def get_painting(key):
-	qry = Painting.query(Painting.key == key)
-	painting = qry.fetch(1)[0]
+def get_painting(id):
+	painting = Painting.get_by_id(id)
 	form = PaintingEditForm()
 	form.title.data = painting.title
 	form.notes.data = painting.notes
 	form.key.data = painting.key
 	return painting, form
 
-def update_painting(data):
+def update_painting(id, data):
 	form = PaintingEditForm(data=data)
-	qry = Painting.query(Painting.key == form.key.data)
-	painting = qry.fetch(1)[0]
+	painting = Painting.get_by_id(id)
 	painting.title = form.title.data
 	painting.notes = form.notes.data
 	return painting.put()
 
-def create_painting(data):
+def create_painting(data, image):
 	form = PaintingCreateForm(data=data)
-	if form.validate():
-		pass
-	else:
-		abort(400)
+	# if form.validate():
+	# 	pass
+	# else:
+	# 	abort(400)
 	painting = Painting()
 	painting.title = form.title.data
 	painting.notes = form.notes.data
-	image = form.image.data
 	painting.image = b64encode(image)
 	return painting.put()
 
-def delete_painting(key):
-	qry = Painting.query(Painting.key == key)
-	return qry.fetch(1)[0].delete()
+def delete_painting(id):
+	return Painting.get_by_id(id).key.delete()
 
 
 def get_paintings():

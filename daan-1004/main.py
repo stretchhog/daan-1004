@@ -12,17 +12,15 @@ app.config['SECRET_KEY'] = 'you-will-never-guess'
 
 api = Api(app)
 # import routes
-from app.handlers import home_handler, painting_handler
+from app.handlers import home_handler, painting_handler, music_handler
 
 @app.before_request
 def before_request():
 	user = users.get_current_user()
 	if user:
 		session['logged_in'] = True
-		session['user'] = user
 	else:
 		session['logged_in'] = False
-		session['user'] = None
 
 
 @app.errorhandler(404)

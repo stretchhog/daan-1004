@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+	<form action="" method="post" name="update-music">
+		{{ form.hidden_tag() }}
+		<div> {{ form.title }}</div>
+		<div> {{ form.youtube }}</div>
+		<div> {{ form.notes }}</div>
+		<div><input type="submit" value="Aanpassen"></div>
+	</form>
+{% endblock %}

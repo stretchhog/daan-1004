@@ -1,47 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <title>timvancann.nl</title>
+	<meta charset="utf-8"/>
+	<title>timvancann.nl</title>
 
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
 </head>
 <body>
 
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Brand</a>
-        </div>
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+			        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Brand</a>
+		</div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-				{% for href, id, caption in navigation_bar_left %}
-                    <li{% if id == active_page %} class="active"{% endif %}>
-                        <a href="{{ href|e }}">{{ caption|e }}</a>
-                    </li>
-				{% endfor %}
-            </ul>
-			<ul class="nav navbar-nav navbar-right">
-				{% for href, id, caption in navigation_bar_right %}
-					<li{% if id == active_page %} class="active"{% endif %}>
-						<a href="{{ href|e }}">{{ caption|e }}</a>
-					</li>
-				{% endfor %}
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li{% if 'home' == active_page %} class="active"{% endif %}>
+					{% if session.logged_in %}
+						<a href="{{ url_for('admin_home') }}">Home</a>
+					{% else %}
+						<a href="{{ url_for('home') }}">Home</a>
+					{% endif %}
+				</li>
+				<li{% if 'paintings' == active_page %} class="active"{% endif %}>
+					{% if session.logged_in %}
+						<a href="{{ url_for('admin_paintings_list') }}">Schilderijen</a>
+					{% else %}
+						<a href="{{ url_for('paintings_list') }}">Schilderijen</a>
+					{% endif %}
+				</li>
+				<li{% if 'music' == active_page %} class="active"{% endif %}>
+					{% if session.logged_in %}
+						<a href="{{ url_for('admin_music_list') }}">Muziek</a>
+					{% else %}
+						<a href="{{ url_for('music_list') }}">Muziek</a>
+					{% endif %}
+				</li>
+				<li{% if 'about' == active_page %} class="active"{% endif %}>
+					{% if session.logged_in %}
+						<a href="{{ url_for('admin_about') }}">Over mij</a>
+					{% else %}
+						<a href="{{ url_for('about') }}">Over mij</a>
+					{% endif %}
+				</li>
 			</ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
+			<ul class="nav navbar-nav navbar-right">
+				{% if session.logged_in %}
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+						   aria-expanded="false">Toevoegen <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ url_for('painting_create') }}">Schilderij</a></li>
+							<li><a href="{{ url_for('music_create') }}">Muziek</a></li>
+						</ul>
+					</li>
+					<li{% if 'logout' == active_page %} class="active"{% endif %}>
+						<a href="{{ url_for('logout') }}">Logout</a>
+					</li>
+				{% else %}
+					<li{% if 'login' == active_page %} class="active"{% endif %}>
+						<a href="{{ url_for('login') }}">Login</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container-fluid -->
 </nav>
 
 {% block body %}{% endblock %}

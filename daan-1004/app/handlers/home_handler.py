@@ -16,17 +16,25 @@ class Home(Resource):
 		return make_response(render_template("home.html"))
 
 
+class About(Resource):
+	def get(self):
+		return make_response(render_template("about.html"))
+
+
 class Login(Resource):
 	def get(self):
-		return users.create_login_url(dest_url='home')
+		return redirect(users.create_login_url(dest_url='/admin/home'))
 
 
 class Logout(Resource):
 	def get(self):
-		return users.create_logout_url(dest_url='home')
+		return redirect(users.create_logout_url(dest_url='/main/home'))
 
 
 api.add_resource(Root, '/', endpoint='root')
 api.add_resource(Home, '/main/home', endpoint='home')
-api.add_resource(Home, '/main/login', endpoint='login')
-api.add_resource(Home, '/main/logout', endpoint='logout')
+api.add_resource(Home, '/admin/home', endpoint='admin_home')
+api.add_resource(About, '/main/about', endpoint='about')
+api.add_resource(About, '/admin/about', endpoint='admin_about')
+api.add_resource(Login, '/main/login', endpoint='login')
+api.add_resource(Logout, '/main/logout', endpoint='logout')

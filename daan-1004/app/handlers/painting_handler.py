@@ -15,18 +15,18 @@ class PaintingList(Resource):
 
 
 class PaintingDelete(Resource):
-	def get(self, key):
-		service.delete_painting(key)
+	def get(self, id):
+		service.delete_painting(id)
 		return redirect(api.url_for(PaintingList), 301)
 
 
 class PaintingDetail(Resource):
-	def get(self, key):
-		painting, form = service.get_painting(key)
+	def get(self, id):
+		painting, form = service.get_painting(id)
 		return make_response(render_template('paintings/detail.html', painting=painting, form=form))
 
-	def post(self):
-		key = service.update_painting(request.get_json())
+	def post(self, id):
+		key = service.update_painting(id, request.get_json())
 		if key is not None:
 			return redirect(api.url_for(PaintingList), 301)
 
@@ -37,7 +37,8 @@ class PaintingCreate(Resource):
 		return make_response(render_template('paintings/create.html', form=form))
 
 	def post(self):
-		key = service.create_painting(request.get_json())
+		files = request.files
+		key = service.create_painting(request.get_json(), files.get('image'))
 		if key is not None:
 			return redirect(api.url_for(PaintingList), 301)
 
@@ -47,5 +48,5 @@ api.add_resource(PaintingList, '/main/paintings', endpoint='paintings_list')
 # admin
 api.add_resource(PaintingList, '/admin/paintings', endpoint='admin_paintings_list')
 api.add_resource(PaintingCreate, '/admin/paintings/create', endpoint='painting_create')
-api.add_resource(PaintingDetail, '/admin/paintings/<int:key>', endpoint='painting_detail')
-api.add_resource(PaintingDelete, '/admin/paintings/delete/<int:key>', endpoint='painting_delete')
+api.add_resource(PaintingDetail, '/admin/paintings/<int:id>', endpoint='painting_detail')
+api.add_resource(PaintingDelete, '/admin/paintings/delete/<int:id>', endpoint='painting_delete')
