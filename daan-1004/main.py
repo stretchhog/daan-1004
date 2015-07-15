@@ -1,9 +1,6 @@
 import os
-from flask.ext.login import LoginManager
-
 from flask_restful import Api
-from flask import Flask, render_template, make_response
-from app.models import User
+from flask import Flask, render_template, make_response, redirect
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
@@ -13,10 +10,13 @@ app.config['WTF_CSRF_ENABLED'] = False
 app.config['SECRET_KEY'] = 'you-will-never-guess'
 
 api = Api(app)
+# import routes
+from app.handlers import home_handler, painting_handler
 
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
+
+@app.route('/')
+def root():
+	return redirect(api.url_for(home_handler.Home))
 
 
 @app.errorhandler(404)
@@ -35,9 +35,3 @@ def after_request(response):
 	response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
 	response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
 	return response
-
-# import routes
-from app.handlers import user_handler, home_handler, painting_handler
-
-if __name__ == '__main__':
-	app.run()

@@ -19,12 +19,3 @@ class PaintingEditForm(Form):
 	notes = TextAreaField('Beschrijving')
 	key = HiddenField('key')
 
-
-class LoginForm(Form):
-	user = StringField('user', validators=[DataRequired()])
-	password = PasswordField('password', validators=[DataRequired()])
-
-
-class UserCreateForm(Form):
-	user = StringField(label='user', description="username", validators=[DataRequired()])
-	password = PasswordField(label='password', description="password", validators=[DataRequired()])
