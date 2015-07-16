@@ -5,6 +5,7 @@
 	<title>timvancann.nl</title>
 
 	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/custom.css">
 </head>
 <body>
 
@@ -79,7 +80,9 @@
 	<!-- /.container-fluid -->
 </nav>
 
+<div class="container">
 {% block body %}{% endblock %}
+</div>
 
 <script src="{{ url_for('static', filename='js/jquery-2.1.4.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
