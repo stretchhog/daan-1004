@@ -2,24 +2,24 @@
 {% set active_page = "music" %}
 {% block body %}
 
-    <h1>Muziek</h1>
-    {% for music in musics %}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                {{ music.title }}
-            </div>
-            <div class="panel-body">
-                <div class="col-xs-5">
-	                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ music.youtube }}?rel=0" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="col-xs-7" align="left">
-                    <p>{{ music.notes }}</p>
-                    {% if session.logged_in %}
-                    <a href="{{ url_for('music_detail', id=music.key.id()) }}" class="btn btn-info">Edit</a>
-                    <a href="{{ url_for('music_delete', id=music.key.id()) }}" class="btn btn-danger">Delete</a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+	<h1>Muziek</h1>
+	{% for music in musics %}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				{{ music.title }}
+			</div>
+			<div class="panel-body">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ music.url }}?rel=0" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<div>
+					<p>{{ music.notes }}</p>
+					{% if session.logged_in %}
+						<a href="{{ url_for('music_detail', id=music.key.id()) }}" class="btn btn-info">Edit</a>
+						<a href="{{ url_for('music_delete', id=music.key.id()) }}" class="btn btn-danger">Delete</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	{% endfor %}
 {% endblock %}

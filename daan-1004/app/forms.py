@@ -16,6 +16,6 @@ class PaintingEditForm(Form):
 
 
 class MusicForm(Form):
-	title = StringField('title', validators=[DataRequired()])
-	youtube = StringField('youtube')
+	title = StringField(label='Titel', validators=[DataRequired()])
+	url = StringField('url')
 	notes = TextAreaField('notes')

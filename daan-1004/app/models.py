@@ -10,6 +10,6 @@ class Painting(ndb.Model):
 
 class Music(ndb.Model):
 	title = ndb.StringProperty()
-	youtube = ndb.StringProperty()
+	url = ndb.StringProperty()
 	notes = ndb.StringProperty()
 	date_added = ndb.DateTimeProperty(auto_now_add=True)

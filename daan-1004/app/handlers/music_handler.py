@@ -8,23 +8,23 @@ __author__ = 'Stretchhog'
 
 class MusicList(Resource):
 	def get(self):
-		musics = service.get_musics()
+		musics = service.get_all()
 		return make_response(render_template("music/list.html", title="Muziek", musics=musics))
 
 
 class MusicDelete(Resource):
 	def get(self, id):
-		service.delete_music(id)
+		service.delete_by_id(id)
 		return redirect(api.url_for(MusicList), 301)
 
 
 class MusicDetail(Resource):
 	def get(self, id):
-		painting, form = service.get_music(id)
+		painting, form = service.get_by_id(id)
 		return make_response(render_template('music/detail.html', painting=painting, form=form))
 
 	def post(self, id):
-		key = service.update_music(id, request.get_json())
+		key = service.update_by_id(id, request.get_json())
 		if key is not None:
 			return redirect(api.url_for(MusicList), 301)
 
@@ -35,9 +35,9 @@ class MusicCreate(Resource):
 		return make_response(render_template('music/create.html', form=form))
 
 	def post(self):
-		key = service.create_music(request.get_json())
+		key = service.create(request.get_json())
 		if key is not None:
-			return redirect('admin_music_list', 301)
+			return redirect('/admin/music', 301)
 
 # public
 api.add_resource(MusicList, '/main/music', endpoint='music_list')

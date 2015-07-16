@@ -1,5 +1,6 @@
 from base64 import b64encode
 from google.appengine.ext import blobstore
+import re
 from app.forms import PaintingEditForm, PaintingCreateForm
 from app.models import Painting
 
@@ -40,3 +41,4 @@ def get_paintings():
 	paintings = Painting.query().order(-Painting.date_added).fetch()
 	images = [blobstore.get(painting.blob_key) for painting in paintings]
 	return paintings, images
+

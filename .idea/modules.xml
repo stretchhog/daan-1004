@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/daan-1004.iml" filepath="$PROJECT_DIR$/.idea/daan-1004.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daan-1004.iml" filepath="$PROJECT_DIR$/daan-1004.iml" />
     </modules>
   </component>
 </project>
