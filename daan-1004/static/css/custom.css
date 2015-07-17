@@ -3,6 +3,19 @@
     border: none;
 }
 
+html, body {
+    height: 100%;
+}
+#wrapper {
+    min-height: 100%;
+    height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+    height: 100%;
+    margin: 0 auto -260px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+    height: 260px; /* .push must be the same height as .footer */
+}
+
 li.active {
     background-color: #f49237;
 }
@@ -13,7 +26,6 @@ a {
     -webkit-transition: color 0.2s ease-in-out;
     -o-transition: color 0.2s ease-in-out;
 }
-
 
 a, a:hover {
     text-decoration: none;
@@ -26,7 +38,6 @@ i {
 .navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li:hover > a {
     border-bottom: 2px solid;
 }
-
 
 .navbar-default .navbar-nav > li > a i {
     margin: 0 -2px 0 -5px;
@@ -57,4 +68,70 @@ section#title {
     background-color: #f49237;
     color: #fff;
 
+}
+
+/***** Footer *****/
+
+.footer {
+    margin: 0 auto;
+    padding-bottom: 10px;
+    background: #f8f8f8 url(../img/pattern.jpg) left top repeat;
+    -moz-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .05) inset;
+    -webkit-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .05) inset;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .05) inset;
+}
+
+.footer-box {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.footer-box h4 {
+    font-size: 14px;
+    color: #5d5d5d;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .7);
+}
+
+.footer-box-text p {
+    line-height: 24px;
+}
+
+.footer-box-text-contact i {
+    padding-right: 7px;
+}
+
+.footer-box-text-subscribe form {
+    padding-bottom: 10px;
+}
+
+.footer-box-text-subscribe input[type="text"] {
+    width: 95%;
+    height: 26px;
+}
+
+.footer-border {
+    border-top: 1px dashed #ddd;
+}
+
+.footer-copyright {
+    margin-top: 15px;
+    line-height: 24px;
+    text-align: left;
+}
+
+.footer-social {
+    margin-top: 5px;
+    text-align: right;
+}
+
+.footer-social a {
+    margin: 0 0 0 10px;
+    font-size: 26px;
+    color: #888;
+}
+
+.footer-social a:hover, .footer-social a:focus {
+    color: #9d426b;
 }

@@ -29,6 +29,9 @@ handlers:
 - url: /static/fonts
   static_dir: static/fonts
 
+- url: /static/img
+  static_dir: static/img
+
 libraries:
 - name: webapp2
   version: "2.5.2"
