@@ -57,10 +57,10 @@ class PhotoUploadHandler(Resource, BlobstoreUploadHandler):
 			redirect('/admin/paintings/list')
 
 # public
-api.add_resource(PaintingList, '/main/paintings', endpoint='paintings_list')
+api.add_resource(PaintingList, '/main/paintings', endpoint='paintings')
 
 # admin
-api.add_resource(PaintingList, '/admin/paintings', endpoint='admin_paintings_list')
+api.add_resource(PaintingList, '/admin/paintings', endpoint='admin_paintings')
 api.add_resource(PaintingCreate, '/admin/paintings/create', endpoint='painting_create')
 api.add_resource(PaintingDetail, '/admin/paintings/<int:id>', endpoint='painting_detail')
 api.add_resource(PaintingDelete, '/admin/paintings/delete/<int:id>', endpoint='painting_delete')

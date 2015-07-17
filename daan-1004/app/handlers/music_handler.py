@@ -40,10 +40,10 @@ class MusicCreate(Resource):
 			return redirect('/admin/music', 301)
 
 # public
-api.add_resource(MusicList, '/main/music', endpoint='music_list')
+api.add_resource(MusicList, '/main/music', endpoint='music')
 
 # admin
-api.add_resource(MusicList, '/admin/music', endpoint='admin_music_list')
+api.add_resource(MusicList, '/admin/music', endpoint='admin_music')
 api.add_resource(MusicCreate, '/admin/music/create', endpoint='music_create')
 api.add_resource(MusicDetail, '/admin/music/<int:id>', endpoint='music_detail')
 api.add_resource(MusicDelete, '/admin/music/delete/<int:id>', endpoint='music_delete')

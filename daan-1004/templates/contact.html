@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% set active_page = "contact" %}
+{% set title = "Over mij" %}
+{% block title %}
+	<section id="title" class="peach">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<h1>Contact</h1>
+					<p>Neem contact op met uwe hoogheid</p>
+				</div>
+			</div>
+		</div>
+	</section><!--/#title-->
+		<iframe width="100%" height="215px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+		        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2510.273746112283!2d5.842648000000006!3d51.011091399999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c0c794e94fff73%3A0xeb432d1da8ac9f0c!2sMartin+Luther+Kingstraat+7%2C+6141+DA+Limbricht!5e0!3m2!1sen!2snl!4v1437120653406"></iframe>
+{% endblock %}
+{% block body %}
+	<section id="contact-page" class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<h4>Contact formulier</h4>
+				<div class="status alert alert-success" style="display: none"></div>
+				<form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="" role="form">
+					<div class="row">
+						<div class="form-group">
+							<input type="text" class="form-control" required="required" placeholder="Naam">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" required="required" placeholder="Email adres">
+						</div>
+						<div class="form-group">
+							<textarea name="message" id="message" required="required" class="form-control" rows="8"
+							          placeholder="Bericht"></textarea>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Verstuur</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!--/.col-sm-8-->
+			<div class="col-sm-6">
+				<!-- Classic Heading -->
+				<h4 class="classic-title"><span>Informatie</span></h4>
+
+				<!-- Some Info -->
+				<p>Hier wat info over mijn adres en werktijden</p>
+
+				<!-- Info - Icons List -->
+					<i class="fa fa-globe">  </i> <strong>Adres:</strong> Martin Luther Kingstraat 7, Limbricht<br>
+					<i class="fa fa-envelope-o"></i> <strong>Email:</strong> d_lebens@hotmail.com<br>
+					<i class="fa fa-mobile"></i> <strong>Mobiel:</strong> +31 6 145 166 05<br>
+
+				<!-- Divider -->
+
+				<!-- Classic Heading -->
+				<h4 class="classic-title"><span>Werktijden</span></h4>
+
+				<!-- Info - List -->
+				<ul class="list-unstyled">
+					<li><strong>Monday - Friday</strong> - Soms</li>
+					<li><strong>Saturday</strong> - 01:00 tot 06:00</li>
+					<li><strong>Sunday</strong> - Niet</li>
+				</ul>
+			</div>
+			<!--/.col-sm-4-->
+		</div>
+	</section><!--/#contact-page-->
+{% endblock %}

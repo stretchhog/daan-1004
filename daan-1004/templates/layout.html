@@ -1,76 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<title>timvancann.nl</title>
-
-	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+	<title>{{ title }}</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/custom.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/colors/peach.css">
 </head>
 <body>
 
-<nav class="navbar navbar-default">
-	<div class="container-fluid">
+
+{% if session.logged_in %}
+	{% set url_for_home = url_for('admin_home') %}
+	{% set url_for_music = url_for('admin_music') %}
+	{% set url_for_paintings = url_for('admin_paintings') %}
+	{% set url_for_about = url_for('admin_about') %}
+	{% set url_for_contact = url_for('admin_contact') %}
+{% else %}
+	{% set url_for_home = url_for('home') %}
+	{% set url_for_music = url_for('music') %}
+	{% set url_for_paintings = url_for('paintings') %}
+	{% set url_for_about = url_for('about') %}
+	{% set url_for_contact = url_for('contact') %}
+{% endif %}
+{% set url_for_login = url_for('login') %}
+{% set url_for_logout = url_for('logout') %}
+<header class="navbar navbar-default navbar-top">
+	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-			        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Brand</a>
+			<a class="navbar-brand" href="{{ url_for_home }}">Brand</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li{% if 'home' == active_page %} class="active"{% endif %}>
-					{% if session.logged_in %}
-						<a href="{{ url_for('admin_home') }}">Home</a>
-					{% else %}
-						<a href="{{ url_for('home') }}">Home</a>
-					{% endif %}
+				<li>
+					<a {% if 'home' == active_page %} class="active"{% endif %} style="text-align: center" href="{{ url_for_home }}">
+						<i class="fa fa-home center"></i>
+						Home
+					</a>
 				</li>
-				<li{% if 'paintings' == active_page %} class="active"{% endif %}>
-					{% if session.logged_in %}
-						<a href="{{ url_for('admin_paintings_list') }}">Schilderijen</a>
-					{% else %}
-						<a href="{{ url_for('paintings_list') }}">Schilderijen</a>
-					{% endif %}
+				<li>
+					<a {% if 'paintings' == active_page %} class="active"{% endif %} style="text-align: center" href="{{ url_for_paintings }}">
+						<i class="fa fa-paint-brush"></i>
+						Schilderijen
+					</a>
 				</li>
-				<li{% if 'music' == active_page %} class="active"{% endif %}>
-					{% if session.logged_in %}
-						<a href="{{ url_for('admin_music_list') }}">Muziek</a>
-					{% else %}
-						<a href="{{ url_for('music_list') }}">Muziek</a>
-					{% endif %}
+				<li>
+					<a {% if 'music' == active_page %} class="active"{% endif %} style="text-align: center" href="{{ url_for_music }}">
+						<i class="fa fa-music"></i>
+						Muziek
+					</a>
 				</li>
-				<li{% if 'about' == active_page %} class="active"{% endif %}>
-					{% if session.logged_in %}
-						<a href="{{ url_for('admin_about') }}">Over mij</a>
-					{% else %}
-						<a href="{{ url_for('about') }}">Over mij</a>
-					{% endif %}
+				<li>
+					<a {% if 'about' == active_page %} class="active"{% endif %} style="text-align: center" href="{{ url_for_about }}">
+						<i class="fa fa-beer"></i>
+						Over mij
+					</a>
+				</li>
+				<li>
+					<a {% if 'contact' == active_page %} class="active"{% endif %} style="text-align: center" href="{{ url_for_contact }}">
+						<i class="fa fa-globe"></i>
+						Contact
+					</a>
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				{% if session.logged_in %}
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-						   aria-expanded="false">Toevoegen <span class="caret"></span></a>
+						<a href="#" style="text-align: center" class="dropdown-toggle" data-toggle="dropdown"
+						   role="button" aria-haspopup="true"
+						   aria-expanded="false">
+							<i class="caret"></i>
+							Toevoegen
+						</a>
 						<ul class="dropdown-menu">
 							<li><a href="{{ url_for('painting_create') }}">Schilderij</a></li>
 							<li><a href="{{ url_for('music_create') }}">Muziek</a></li>
 						</ul>
 					</li>
-					<li{% if 'logout' == active_page %} class="active"{% endif %}>
-						<a href="{{ url_for('logout') }}">Logout</a>
+					<li>
+						<a {% if 'logout' == active_page %} class="active"{% endif %} style="text-align: center" href="{{ url_for_logout }}">
+							<i class="fa fa-sign-out"></i>
+							Uitloggen
+						</a>
 					</li>
 				{% else %}
-					<li{% if 'login' == active_page %} class="active"{% endif %}>
-						<a href="{{ url_for('login') }}">Login</a>
+					<li>
+						<a {% if 'login' == active_page %} class="active"{% endif %} style="text-align: center" href="{{ url_for_login }}">
+							<i class="fa fa-sign-in"></i>
+							Inloggen
+						</a>
 					</li>
 				{% endif %}
 			</ul>
@@ -78,13 +107,16 @@
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid -->
-</nav>
+</header>
 
+{% block title %}{% endblock %}
 <div class="container">
-{% block body %}{% endblock %}
+	{% block body %}{% endblock %}
 </div>
 
 <script src="{{ url_for('static', filename='js/jquery-2.1.4.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dropzone.js') }}"></script>
+
 </body>
 </html>

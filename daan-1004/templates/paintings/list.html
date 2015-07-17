@@ -1,25 +1,38 @@
 {% extends "layout.html" %}
 {% set active_page = "paintings" %}
-{% block body %}
+{% set title = "Schilderijen" %}
+{% block title %}
+	<section id="title" class="peach">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<h1>Schilderijen</h1>
 
-    <h1>Schilderijen</h1>
-    {% for painting in paintings %}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                {{ painting.title }}
-            </div>
-            <div class="panel-body">
-                <div class="col-xs-5">
-                    <img src="data:;base64,{{ painting.image }}" class="img-responsive"/>
-                </div>
-                <div class="col-xs-7" align="left">
-                    <p>{{ painting.notes }}</p>
-                    {% if session.logged_in %}
-                    <a href="{{ url_for('painting_detail', id=painting.key.id()) }}" class="btn btn-info">Edit</a>
-                    <a href="{{ url_for('painting_delete', id=painting.key.id()) }}" class="btn btn-danger">Delete</a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+					<p>Zie hier mijn creaties... It's alive, it's alive!!!</p>
+				</div>
+			</div>
+		</div>
+	</section><!--/#title-->
+{% endblock %}
+{% block body %}
+	{% for painting in paintings %}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				{{ painting.title }}
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-5">
+					<img src="data:;base64,{{ painting.image }}" class="img-responsive"/>
+				</div>
+				<div class="col-xs-7" align="left">
+					<p>{{ painting.notes }}</p>
+					{% if session.logged_in %}
+						<a href="{{ url_for('painting_detail', id=painting.key.id()) }}" class="btn btn-info">Edit</a>
+						<a href="{{ url_for('painting_delete', id=painting.key.id()) }}"
+						   class="btn btn-danger">Delete</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	{% endfor %}
 {% endblock %}
