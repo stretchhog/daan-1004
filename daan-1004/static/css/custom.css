@@ -70,6 +70,35 @@ section#title {
 
 }
 
+/***** Home *****/
+
+.slider-2-container {
+    padding: 180px 0;
+}
+
+.slider-2-text {
+    padding: 30px 0 43px 0;
+    background: #1d1d1d; /* browsers that don't support rgba */
+    background: rgba(0, 0, 0, .7);
+    color: #fff;
+}
+
+.slider-2-text h1 {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.slider-2-text p {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 18px;
+    font-style: italic;
+}
+
 /***** Footer *****/
 
 .footer {
