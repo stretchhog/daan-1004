@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
-<form action="{{ upload_url }}" method="post" name="create-painting" enctype=multipart/form-data>
+<form action="{{ upload_url }}" method="post" name="create-painting" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
     <div> {{ form.title }}</div>
-	<input type="file" name="file" class="dropzone">
+	<input type="file" name="file">
 	<div> {{ form.notes }}</div>
     <div><input type="submit" name="submit" value="Toevoegen"></div>
 </form>

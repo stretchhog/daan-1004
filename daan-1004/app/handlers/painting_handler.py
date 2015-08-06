@@ -1,5 +1,7 @@
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp.blobstore_handlers import BlobstoreUploadHandler
+from google.appengine.ext.blobstore.blobstore import BlobInfo
+
 from flask import request, make_response, render_template, redirect
 from flask.ext.restful import Resource
 
@@ -45,7 +47,7 @@ class PaintingCreate(Resource):
 class PhotoUploadHandler(Resource, BlobstoreUploadHandler):
 	def post(self):
 		try:
-			upload = self.get_uploads()[0]
+			upload = BlobInfo.all().order('-creation').fetch(1)[0]
 			form = PaintingCreateForm(data=request.get_json())
 			painting = Painting(title=form.title.data, blob_key=upload.key(), notes=form.notes.data)
 			painting.put()
@@ -53,8 +55,7 @@ class PhotoUploadHandler(Resource, BlobstoreUploadHandler):
 			redirect('/admin/paintings/list')
 
 		except():
-			print 's'
-			redirect('/admin/paintings/list')
+			redirect('/admin/paintings/failure')
 
 # public
 api.add_resource(PaintingList, '/main/paintings', endpoint='paintings')
@@ -62,6 +63,14 @@ api.add_resource(PaintingList, '/main/paintings', endpoint='paintings')
 # admin
 api.add_resource(PaintingList, '/admin/paintings', endpoint='admin_paintings')
 api.add_resource(PaintingCreate, '/admin/paintings/create', endpoint='painting_create')
+
+
+class PaintingFailure(Resource):
+	def get(self):
+		return make_response(render_template('paintings/failure.html'))
+
+
+api.add_resource(PaintingFailure, '/admin/paintings/failure', endpoint='painting_failure')
 api.add_resource(PaintingDetail, '/admin/paintings/<int:id>', endpoint='painting_detail')
 api.add_resource(PaintingDelete, '/admin/paintings/delete/<int:id>', endpoint='painting_delete')
 api.add_resource(PhotoUploadHandler, '/admin/upload', endpoint='painting_upload')

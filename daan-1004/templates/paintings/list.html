@@ -15,14 +15,14 @@
 	</section><!--/#title-->
 {% endblock %}
 {% block body %}
-	{% for painting in paintings %}
+	{% for painting, image in entries %}
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				{{ painting.title }}
 			</div>
 			<div class="panel-body">
 				<div class="col-xs-5">
-					<img src="data:;base64,{{ painting.image }}" class="img-responsive"/>
+					<img src="{{ image }}" class="img-responsive"/>
 				</div>
 				<div class="col-xs-7" align="left">
 					<p>{{ painting.notes }}</p>
