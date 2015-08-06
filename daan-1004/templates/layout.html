@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/custom.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/colors/peach.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/lightbox.css">
 </head>
 <body>
 
@@ -194,6 +195,17 @@
 <script src="{{ url_for('static', filename='js/jquery-2.1.4.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
 <script src="{{ url_for('static', filename='js/dropzone.js') }}"></script>
+<script src="{{ url_for('static', filename='js/enquire.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/savvior.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
 
+<script>
+	savvior.init("#grid", {
+		"screen and (max-width: 600px)": { columns: 1 },
+		"screen and (min-width: 600px) and (max-width: 1000px": { columns: 2 },
+		"screen and (min-width: 1000px) and (max-width: 1400px)": { columns: 3 },
+		"screen and (min-width: 1400px)": { columns: 4 }
+	});
+</script>
 </body>
 </html>

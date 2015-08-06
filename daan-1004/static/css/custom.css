@@ -149,7 +149,6 @@ section#title {
     line-height: 24px;
     text-align: left;
 }
-
 .footer-social {
     margin-top: 5px;
     text-align: right;
@@ -164,3 +163,40 @@ section#title {
 .footer-social a:hover, .footer-social a:focus {
     color: #9d426b;
 }
+
+.panel-primary {
+    background-color: #fff5f5;
+    border-color: #fff5f5;
+}
+.panel-primary > .panel-heading {
+    border-color: #fff5f5;
+    background-color: #fff5f5;
+    color: #000;
+}
+
+#grid {
+    margin: auto;
+}
+#grid:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+#grid[data-columns]::before {
+    clear: both;
+    display: block;
+    padding: 10px;
+}
+.box {
+    margin: 0.5em 0.25em;
+    border: 1px solid #5d5d5d;
+}
+.box:last-child {
+    margin-bottom: 0;
+}
+
+.column { float: left; padding: 0.25em; box-sizing: border-box; }
+.size-1of1 { width: 100%; }
+.size-1of2 { width: 50%; }
+.size-1of3 { width: 33.33333%; }
+.size-1of4 { width: 25%; }

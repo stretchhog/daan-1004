@@ -2,37 +2,37 @@
 {% set active_page = "paintings" %}
 {% set title = "Daan Lebens | Schilderijen" %}
 {% block title %}
-	<section id="title" class="peach">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6">
-					<h1>Schilderijen</h1>
+<section id="title" class="peach">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>Schilderijen</h1>
 
-					<p>Zie hier mijn creaties... It's alive, it's alive!!!</p>
-				</div>
+				<p>Zie hier mijn creaties... It's alive, it's alive!!!</p>
 			</div>
 		</div>
-	</section><!--/#title-->
+	</div>
+</section><!--/#title-->
 {% endblock %}
 {% block body %}
+<div id="grid" data-columns>
+
+
 	{% for painting, image in entries %}
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				{{ painting.title }}
-			</div>
-			<div class="panel-body">
-				<div class="col-xs-5">
-					<img src="{{ image }}" class="img-responsive"/>
-				</div>
-				<div class="col-xs-7" align="left">
-					<p>{{ painting.notes }}</p>
-					{% if session.logged_in %}
-						<a href="{{ url_for('painting_detail', id=painting.key.id()) }}" class="btn btn-info">Edit</a>
-						<a href="{{ url_for('painting_delete', id=painting.key.id()) }}"
-						   class="btn btn-danger">Delete</a>
-					{% endif %}
-				</div>
-			</div>
+	<div class="panel panel-primary">
+		<div style="font-weight: bold" class="panel-heading hidden-xs">{{ painting.title }}</div>
+		<div class="panel-body">
+			<a href="{{ image }}" data-lightbox="Schilderijen" data-title="{{ painting.title }}"><img
+					style="margin-bottom: 5px" src="{{ image }}" class="img-responsive"/></a>
+
+
+			<div class="hidden-xs">{{ painting.notes }}</div>
 		</div>
+		{% if session.logged_in %}
+		<a href="{{ url_for('painting_detail', id=painting.key.id()) }}" class="btn btn-info">Aanpassen</a>
+		<a href="{{ url_for('painting_delete', id=painting.key.id()) }}" class="btn btn-danger">Verwijder</a>
+		{% endif %}
+	</div>
 	{% endfor %}
+</div>
 {% endblock %}
