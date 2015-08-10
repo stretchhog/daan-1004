@@ -9,6 +9,7 @@ from app.forms import PaintingCreateForm
 from app.services import painting_service as service
 from main import api, app
 from app.models import Painting
+from werkzeug.http import parse_options_header
 
 __author__ = 'Stretchhog'
 
@@ -47,15 +48,18 @@ class PaintingCreate(Resource):
 class PhotoUploadHandler(Resource, BlobstoreUploadHandler):
 	def post(self):
 		try:
-			upload = BlobInfo.all().order('-creation').fetch(1)[0]
+			f = request.files['file']
+			header = f.headers['Content-Type']
+			parsed_header = parse_options_header(header)
+			blob_key = parsed_header[1]['blob-key']
 			form = PaintingCreateForm(data=request.get_json())
-			painting = Painting(title=form.title.data, blob_key=upload.key(), notes=form.notes.data)
+			painting = Painting(title=form.title.data, blob_key=blob_key, notes=form.notes.data)
 			painting.put()
 
-			redirect('/admin/paintings/list')
+			return redirect(api.url_for(PaintingList), 301)
 
 		except():
-			redirect('/admin/paintings/failure')
+			return self.redirect('/admin/paintings/failure')
 
 # public
 api.add_resource(PaintingList, '/main/paintings', endpoint='paintings')
