@@ -15,24 +15,28 @@
 </section><!--/#title-->
 {% endblock %}
 {% block body %}
-<div id="grid" data-columns>
+<!--<div id="grid" data-columns>-->
+<div id="gallery" style="display: none;">
 
 
 	{% for painting, image in entries %}
-	<div class="panel panel-primary">
-		<div style="font-weight: bold" class="panel-heading hidden-xs">{{ painting.title }}</div>
-		<div class="panel-body">
-			<a href="{{ image }}" data-lightbox="Schilderijen" data-title="{{ painting.title }}"><img
-					style="margin-bottom: 5px" src="{{ image }}" class="img-responsive"/></a>
+	<!--<div class="panel panel-primary">-->
+		<!--<div style="font-weight: bold" class="panel-heading hidden-xs">{{ painting.title }}</div>-->
+		<!--<div class="panel-body">-->
+			<img alt="{{ painting.title }}" src="{{ image }}"
+			     data-image="{{ image }}"
+			     data-description="{{ painting.notes }}">
+			<!--<a href="{{ image }}" data-lightbox="Schilderijen" data-title="{{ painting.title }}"><img-->
+					<!--style="margin-bottom: 5px" src="{{ image }}" class="img-responsive"/></a>-->
 
 
-			<div class="hidden-xs">{{ painting.notes }}</div>
-		</div>
-		{% if session.logged_in %}
-		<a href="{{ url_for('painting_detail', id=painting.key.id()) }}" class="btn btn-info">Aanpassen</a>
-		<a href="{{ url_for('painting_delete', id=painting.key.id()) }}" class="btn btn-danger">Verwijder</a>
-		{% endif %}
-	</div>
+			<!--<div class="hidden-xs">{{ painting.notes }}</div>-->
+		<!--</div>-->
+		<!--{% if session.logged_in %}-->
+		<!--<a href="{{ url_for('painting_detail', id=painting.key.id()) }}" class="btn btn-info">Aanpassen</a>-->
+		<!--<a href="{{ url_for('painting_delete', id=painting.key.id()) }}" class="btn btn-danger">Verwijder</a>-->
+		<!--{% endif %}-->
+	<!--</div>-->
 	{% endfor %}
 </div>
 {% endblock %}

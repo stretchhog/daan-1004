@@ -9,6 +9,9 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/custom.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/colors/peach.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/lightbox.css">
+
+	<link rel='stylesheet' type="text/css" href="/static/css/unite-gallery.css"/>
+	<!--<link rel='stylesheet' type="text/css" href="/static/css/default/ug-theme-default.css"/>-->
 </head>
 <body>
 
@@ -198,12 +201,33 @@
 <script src="{{ url_for('static', filename='js/enquire.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/savvior.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/unitegallery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/ug-theme-tiles.js') }}"></script>
 
 <script>
 	savvior.init("#grid", {
 		"screen and (max-width: 600px)": { columns: 1 },
 		"screen and (min-width: 600px) and (max-width: 1000px": { columns: 2 },
 		"screen and (min-width: 1000px)": { columns: 3 }
+	});
+</script>
+<script type="text/javascript">
+
+	jQuery(document).ready(function(){
+		jQuery("#gallery").unitegallery({
+			tiles_col_width: 300,
+//			tile_enable_overlay: true,			//enable tile color overlay (on mouseover)
+			tile_overlay_opacity: 0.0,			//tile overlay opacity
+			tile_overlay_color: "#000000",		//tile overlay color
+
+			tile_enable_textpanel: true,		//enable textpanel
+			tile_enable_image_effect: true,		//enable tile image effect
+			tile_textpanel_always_on: false,	//textpanel always visible
+
+			tile_image_effect_type: "blur",		//bw, blur, sepia - tile effect type
+			tile_image_effect_reverse: true,	//reverce the image, set only on mouseover state
+			tile_textpanel_source: "desc_title"	//title,desc,desc_title. source of the textpanel. desc_title - if description empty, put title
+		});
 	});
 </script>
 </body>

@@ -104,7 +104,7 @@ section#title {
 .footer {
     margin: 0 auto;
     padding-bottom: 10px;
-    background: #f8f8f8 url(../img/pattern.jpg) left top repeat;
+    background: #f8f8f8 url(../images/pattern.jpg) left top repeat;
     -moz-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .05) inset;
     -webkit-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .05) inset;
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .05) inset;
@@ -200,3 +200,23 @@ section#title {
 .size-1of2 { width: 50%; }
 .size-1of3 { width: 33.33333%; }
 .size-1of4 { width: 25%; }
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
