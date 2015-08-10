@@ -204,15 +204,7 @@
 <script src="{{ url_for('static', filename='js/unitegallery.js') }}"></script>
 <script src="{{ url_for('static', filename='js/ug-theme-tiles.js') }}"></script>
 
-<script>
-	savvior.init("#grid", {
-		"screen and (max-width: 600px)": { columns: 1 },
-		"screen and (min-width: 600px) and (max-width: 1000px": { columns: 2 },
-		"screen and (min-width: 1000px)": { columns: 3 }
-	});
-</script>
 <script type="text/javascript">
-
 	jQuery(document).ready(function(){
 		jQuery("#gallery").unitegallery({
 			tiles_col_width: 300,
