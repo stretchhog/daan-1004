@@ -21,9 +21,6 @@ class About(Resource):
 		return make_response(render_template("about.html"))
 
 
-class Contact(Resource):
-	def get(self):
-		return make_response(render_template("contact.html"))
 
 
 class Login(Resource):
@@ -42,9 +39,6 @@ api.add_resource(Home, '/admin/home', endpoint='admin_home')
 
 api.add_resource(About, '/main/about', endpoint='about')
 api.add_resource(About, '/admin/about', endpoint='admin_about')
-
-api.add_resource(Contact, '/main/contact', endpoint='contact')
-api.add_resource(Contact, '/admin/contact', endpoint='admin_contact')
 
 api.add_resource(Login, '/main/login', endpoint='login')
 api.add_resource(Logout, '/main/logout', endpoint='logout')

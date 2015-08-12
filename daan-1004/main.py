@@ -12,7 +12,7 @@ app.config['SECRET_KEY'] = 'you-will-never-guess'
 
 api = Api(app)
 # import routes
-from app.handlers import home_handler, painting_handler, music_handler
+from app.handlers import home_handler, painting_handler, music_handler, contact_handler
 
 @app.before_request
 def before_request():

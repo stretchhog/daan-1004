@@ -23,16 +23,9 @@ def update_painting(id, data):
 	painting.notes = form.notes.data
 	return painting.put()
 
-def create_painting(data, image):
-	form = PaintingCreateForm(data=data)
-	# if form.validate():
-	# 	pass
-	# else:
-	# 	abort(400)
-	painting = Painting()
-	painting.title = form.title.data
-	painting.notes = form.notes.data
-	painting.image = b64encode(image)
+def create_painting(data, blob_key):
+	form = PaintingCreateForm(data)
+	painting = Painting(title=form.title.data, blob_key=blob_key, notes=form.notes.data)
 	return painting.put()
 
 def delete_painting(id):

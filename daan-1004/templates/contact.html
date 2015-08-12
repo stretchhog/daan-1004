@@ -23,19 +23,24 @@
 				<h4>Contact formulier</h4>
 
 				<div class="status alert alert-success" style="display: none"></div>
-				<div class="col-sm-10"
-				<form id="main-contact-form" class="contact-form" name="contact-form" method="post" action=""
-				      role="form">
+				<div class="col-sm-10">
+				<form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="" role="form">
 					<div class="row">
 						<div class="form-group">
-							<input type="text" class="form-control" required="required" placeholder="Naam">
+							<input id="{{ form.name.id }}" name="{{ form.name.name }}" type="text" class="form-control"
+							       placeholder="Naam">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" required="required" placeholder="Email adres">
+							<input id="{{ form.email.id }}" name="{{ form.email.name }}" type="text" class="form-control"
+							       placeholder="Email adres">
 						</div>
 						<div class="form-group">
-							<textarea name="message" id="message" required="required" class="form-control" rows="8"
-							          placeholder="Bericht"></textarea>
+							<input id="{{ form.phone.id }}" name="{{ form.phone.name }}" type="text" class="form-control"
+							       placeholder="Telefoonnummer">
+						</div>
+						<div class="form-group">
+							<textarea id="{{ form.message.id }}" name="{{ form.message.name }}" class="form-control"
+							       placeholder="Bericht" rows="4"></textarea>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary">Verstuur</button>
@@ -54,7 +59,7 @@
 
 			<!-- Info - Icons List -->
 			<p><i class="fa fa-globe"> </i> <strong>Adres:</strong> Martin Luther Kingstraat 7, Limbricht</p>
-			<p><i class="fa fa-envelope-o"></i> <strong>Email:</strong> d_lebens@hotmail.com</p>
+			<p><i class="fa fa-envelope-o"></i> <strong>Email:</strong> <a href="mailto:d_lebens@hotmail.com">d_lebens@hotmail.com</a></p>
 			<p><i class="fa fa-mobile"></i> <strong>Mobiel:</strong> +31 6 145 166 05</p>
 			<br>
 			<!-- Classic Heading -->

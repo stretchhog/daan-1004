@@ -1,15 +1,13 @@
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp.blobstore_handlers import BlobstoreUploadHandler
-from google.appengine.ext.blobstore.blobstore import BlobInfo
 
 from flask import request, make_response, render_template, redirect
 from flask.ext.restful import Resource
-
 from app.forms import PaintingCreateForm
 from app.services import painting_service as service
-from main import api, app
-from app.models import Painting
+from main import api
 from werkzeug.http import parse_options_header
+
 
 __author__ = 'Stretchhog'
 
@@ -52,9 +50,7 @@ class PhotoUploadHandler(Resource, BlobstoreUploadHandler):
 			header = f.headers['Content-Type']
 			parsed_header = parse_options_header(header)
 			blob_key = parsed_header[1]['blob-key']
-			form = PaintingCreateForm(data=request.get_json())
-			painting = Painting(title=form.title.data, blob_key=blob_key, notes=form.notes.data)
-			painting.put()
+			service.create_painting(request.get_json(), blob_key)
 
 			return redirect(api.url_for(PaintingList), 301)
 
