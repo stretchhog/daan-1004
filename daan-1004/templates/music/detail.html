@@ -1,10 +1,38 @@
 {% extends "layout.html" %}
+{% set active_page = "music" %}
+{% set title = "Daan Lebens | Muziek" %}
+{% block title %}
+<section id="title" class="peach">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>Muziek</h1>
+
+				<p>Voeg hier meer zooi toe!</p>
+			</div>
+		</div>
+	</div>
+</section><!--/#title-->
+{% endblock %}
 {% block body %}
-	<form action="" method="post" name="update-music">
-		{{ form.hidden_tag() }}
-		<div> {{ form.title }}</div>
-		<div> {{ form.youtube }}</div>
-		<div> {{ form.notes }}</div>
-		<div><input type="submit" value="Aanpassen"></div>
-	</form>
+<form action="" method="post" class="form-horizontal" role="form" name="create-music">
+	{{ form.hidden_tag() }}
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="title">Titel:</label>
+		<div class="col-sm-10">
+			<input id="{{ form.title.id }}" name="{{ form.title.name }}" type="text" class="form-control" value="{{ form.title.data }}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="notes">Opmerkingen:</label>
+		<div class="col-sm-10">
+			<textarea id="{{ form.notes.id }}" name="{{ form.notes.name }}" type="text" class="form-control">{{ form.notes.data }}</textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" class="btn btn-default">Aanpassen</button>
+		</div>
+	</div>
+</form>
 {% endblock %}

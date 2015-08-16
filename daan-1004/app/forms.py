@@ -1,6 +1,6 @@
 from flask.ext.wtf import Form
 import re
-from wtforms import StringField, TextAreaField, FileField, HiddenField, PasswordField, IntegerField
+from wtforms import StringField, TextAreaField, FileField, HiddenField, PasswordField, IntegerField, DateTimeField
 from wtforms.validators import DataRequired, regexp
 from wtforms_components import EmailField
 
@@ -26,3 +26,9 @@ class ContactForm(Form):
 	email = EmailField('email')
 	phone = IntegerField('phone')
 	message = TextAreaField('message', validators=[DataRequired()])
+
+class GigForm(Form):
+	date = DateTimeField('date', validators=[DataRequired()])
+	band = StringField('band', validators=[DataRequired()])
+	location = StringField('location', validators=[DataRequired()])
+	notes = TextAreaField('notes')

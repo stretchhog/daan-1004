@@ -5,7 +5,9 @@
 
 html, body {
     height: 100%;
+    font-family: 'Muli', sans-serif;
 }
+
 #wrapper {
     min-height: 100%;
     height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
@@ -17,7 +19,7 @@ html, body {
 }
 
 li.active {
-    background-color: #f49237;
+    background-color: #254971;
 }
 
 a {
@@ -25,49 +27,38 @@ a {
     -moz-transition: color 0.2s ease-in-out;
     -webkit-transition: color 0.2s ease-in-out;
     -o-transition: color 0.2s ease-in-out;
+    font-weight: bold;
 }
 
 a, a:hover {
     text-decoration: none;
+    font-weight: bolder;
 }
 
 i {
     font-size: 1.1em;
 }
 
-.navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li:hover > a {
-    border-bottom: 2px solid;
+
+.navbar {
+    -moz-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .15) inset;
+    -webkit-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .15) inset;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .15) inset;
+    background-color: #f7f5eb;
 }
 
-.navbar-default .navbar-nav > li > a i {
-    margin: 0 -2px 0 -5px;
+.navbar-brand {
+    height: 50px;
 }
 
-.navbar-default .navbar-nav > li > a.active:after {
-    opacity: 1;
-}
-
-.navbar-default .navbar-nav > li > a:after {
-    position: absolute;
-    bottom: 0;
-    content: '';
-    left: 50%;
-    display: block;
-    height: 5px;
-    width: 5px;
-    opacity: 0;
-    margin: 0 0 -3px -2px;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
+.navbar-nav li a {
+    line-height: 50px;
 }
 
 section#title {
-    background-color: #f49237;
+    background-color: #254971;
     color: #fff;
-
+    margin-bottom: 10px;
 }
 
 /***** Home *****/
@@ -104,10 +95,10 @@ section#title {
 .footer {
     margin: 0 auto;
     padding-bottom: 10px;
-    background: #f8f8f8 url(../images/pattern.jpg) left top repeat;
-    -moz-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .05) inset;
-    -webkit-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .05) inset;
-    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .05) inset;
+    background-color: #f7f5eb;
+    -moz-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .15) inset;
+    -webkit-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .15) inset;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .15) inset;
 }
 
 .footer-box {

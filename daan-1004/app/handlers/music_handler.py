@@ -20,8 +20,8 @@ class MusicDelete(Resource):
 
 class MusicDetail(Resource):
 	def get(self, id):
-		painting, form = service.get_by_id(id)
-		return make_response(render_template('music/detail.html', painting=painting, form=form))
+		music, form = service.get_by_id(id)
+		return make_response(render_template('music/detail.html', music=music, form=form))
 
 	def post(self, id):
 		key = service.update_by_id(id, request.get_json())
