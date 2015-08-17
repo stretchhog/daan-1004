@@ -13,8 +13,11 @@ class Contact(Resource):
 		return make_response(render_template("contact.html", form=form))
 
 	def post(self):
-		service.send_email(request.get_json())
-		return make_response(render_template("email_send.html"))
+		form = service.send_email(request.get_json())
+		if form is None:
+			return make_response(render_template("email_send.html"))
+		else:
+			return make_response(render_template("contact.html", form=form))
 
 
 api.add_resource(Contact, '/main/contact', endpoint='contact')

@@ -2,45 +2,61 @@
 {% set active_page = "contact" %}
 {% set title = "Daan Lebens | Contact" %}
 {% block title %}
-	<section id="title" class="peach">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6">
-					<h1>Contact</h1>
-
-					<p>Neem contact op met uwe hoogheid</p>
-				</div>
-			</div>
-		</div>
-	</section><!--/#title-->
-	<iframe width="100%" height="215px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-	        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2510.273746112283!2d5.842648000000006!3d51.011091399999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c0c794e94fff73%3A0xeb432d1da8ac9f0c!2sMartin+Luther+Kingstraat+7%2C+6141+DA+Limbricht!5e0!3m2!1sen!2snl!4v1437120653406"></iframe>
-{% endblock %}
-{% block body %}
-	<section id="contact-page" class="container">
+<section id="title" class="peach">
+	<div class="container">
 		<div class="row">
 			<div class="col-sm-6">
-				<h4>Contact formulier</h4>
+				<h1>Contact</h1>
 
-				<div class="status alert alert-success" style="display: none"></div>
-				<div class="col-sm-10">
-				<form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="" role="form">
+				<p>Neem contact op met uwe hoogheid</p>
+			</div>
+		</div>
+	</div>
+</section><!--/#title-->
+<iframe width="100%" height="215px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2510.273746112283!2d5.842648000000006!3d51.011091399999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c0c794e94fff73%3A0xeb432d1da8ac9f0c!2sMartin+Luther+Kingstraat+7%2C+6141+DA+Limbricht!5e0!3m2!1sen!2snl!4v1437120653406"></iframe>
+{% endblock %}
+{% block body %}
+<section id="contact-page" class="container">
+	<div class="row">
+		<div class="col-sm-6">
+			<h4>Contact formulier</h4>
+
+			<div class="status alert alert-success" style="display: none"></div>
+			<div class="col-sm-10">
+				<form id="main-contact-form" class="contact-form" name="contact-form" method="post" action=""
+				      role="form">
 					<div class="row">
-						<div class="form-group">
+						<div class="form-group has-feedback {% if form.name.errors %} has-error {% endif %}">
 							<input id="{{ form.name.id }}" name="{{ form.name.name }}" type="text" class="form-control"
-							       placeholder="Naam">
+							       placeholder="Naam"
+							       value="{% if form.name.data %} {{ form.name.data }} {% endif %}">
+							{% for error in form.name.errors %}
+							<p class="help-block">{{ error }}</p>
+							{% endfor %}
+						</div>
+						<div class="form-group {% if form.email.errors %} has-error {% endif %}">
+							<input id="{{ form.email.id }}" name="{{ form.email.name }}" type="text"
+							       class="form-control"
+							       placeholder="Email adres"
+							       value="{% if form.email.data %} {{ form.email.data }} {% endif %}">
+							{% for error in form.email.errors %}
+							<p class="help-block">{{ error }}</p>
+							{% endfor %}
 						</div>
 						<div class="form-group">
-							<input id="{{ form.email.id }}" name="{{ form.email.name }}" type="text" class="form-control"
-							       placeholder="Email adres">
+							<input id="{{ form.phone.id }}" name="{{ form.phone.name }}" type="text"
+							       class="form-control"
+							       placeholder="Telefoonnummer"
+							       value="{% if form.phone.data %} {{ form.phone.data }} {% endif %}">
 						</div>
-						<div class="form-group">
-							<input id="{{ form.phone.id }}" name="{{ form.phone.name }}" type="text" class="form-control"
-							       placeholder="Telefoonnummer">
-						</div>
-						<div class="form-group">
+						<div class="form-group {% if form.message.errors %} has-error {% endif %}">
 							<textarea id="{{ form.message.id }}" name="{{ form.message.name }}" class="form-control"
-							       placeholder="Bericht" rows="4"></textarea>
+							          placeholder="Bericht" rows="4">{% if form.message.data %}{{ form.message.data }}{%
+								endif %}</textarea>
+							{% for error in form.message.errors %}
+							<p class="help-block">{{ error }}</p>
+							{% endfor %}
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary">Verstuur</button>
@@ -59,7 +75,10 @@
 
 			<!-- Info - Icons List -->
 			<p><i class="fa fa-globe"> </i> <strong>Adres:</strong> Martin Luther Kingstraat 7, Limbricht</p>
-			<p><i class="fa fa-envelope-o"></i> <strong>Email:</strong> <a href="mailto:d_lebens@hotmail.com">d_lebens@hotmail.com</a></p>
+
+			<p><i class="fa fa-envelope-o"></i> <strong>Email:</strong> <a href="mailto:d_lebens@hotmail.com">d_lebens@hotmail.com</a>
+			</p>
+
 			<p><i class="fa fa-mobile"></i> <strong>Mobiel:</strong> +31 6 145 166 05</p>
 			<br>
 			<!-- Classic Heading -->
@@ -67,10 +86,12 @@
 
 			<!-- Info - List -->
 			<p><strong>Monday - Friday</strong> - Soms</p>
+
 			<p><strong>Saturday</strong> - 01:00 tot 06:00</p>
+
 			<p><strong>Sunday</strong> - Niet</p>
 		</div>
 		<!--/.col-sm-4-->
-		</div>
-	</section><!--/#contact-page-->
+	</div>
+</section><!--/#contact-page-->
 {% endblock %}

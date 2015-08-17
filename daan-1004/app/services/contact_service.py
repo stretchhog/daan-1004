@@ -11,7 +11,7 @@ def send_email(data):
 	if form.validate():
 		pass
 	else:
-		abort(400)
+		return form
 
 	message = mail.EmailMessage()
 	message.sender = "d_lebens@hotmail.com"
@@ -28,3 +28,4 @@ BERICHT:
 	""" % (form.name.data, form.email.data, form.phone.data, form.message.data)
 
 	message.send()
+	return None
