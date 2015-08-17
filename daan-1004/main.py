@@ -19,6 +19,8 @@ def before_request():
 	user = users.get_current_user()
 	if user:
 		session['logged_in'] = True
+		session['user_email'] = user.email()
+		session['user_nickname'] = user.nickname()
 	else:
 		session['logged_in'] = False
 
