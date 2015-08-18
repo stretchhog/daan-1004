@@ -43,7 +43,6 @@ class MusicCreate(Resource):
 api.add_resource(MusicList, '/main/music', endpoint='music')
 
 # admin
-api.add_resource(MusicList, '/admin/music', endpoint='admin_music')
 api.add_resource(MusicCreate, '/admin/music/create', endpoint='music_create')
 api.add_resource(MusicDetail, '/admin/music/<int:id>', endpoint='music_detail')
 api.add_resource(MusicDelete, '/admin/music/delete/<int:id>', endpoint='music_delete')

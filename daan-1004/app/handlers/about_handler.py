@@ -40,7 +40,6 @@ class GigDetail(Resource):
 api.add_resource(About, '/main/about', endpoint='about')
 
 # admin
-api.add_resource(About, '/admin/about', endpoint='admin_about')
 api.add_resource(GigCreate, '/admin/about/create', endpoint='gig_create')
 api.add_resource(GigDetail, '/admin/about/<int:id>', endpoint='gig_detail')
 api.add_resource(GigDelete, '/admin/about/delete/<int:id>', endpoint='gig_delete')

@@ -30,7 +30,7 @@
 						<div class="form-group has-feedback {% if form.name.errors %} has-error {% endif %}">
 							<input id="{{ form.name.id }}" name="{{ form.name.name }}" type="text" class="form-control"
 							       placeholder="Naam"
-							       value="{% if session.logged_in %} {{ session.user_nickname }} {% elif form.name.data %} {{ form.name.data }} {% endif %}">
+							       value="{% if form.name.data %} {{ form.name.data }} {% endif %}">
 							{% for error in form.name.errors %}
 							<p class="help-block">{{ error }}</p>
 							{% endfor %}

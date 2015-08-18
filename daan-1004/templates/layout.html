@@ -20,19 +20,11 @@
 <body>
 
 
-{% if session.logged_in %}
-	{% set url_for_home = url_for('admin_home') %}
-	{% set url_for_music = url_for('admin_music') %}
-	{% set url_for_paintings = url_for('admin_paintings') %}
-	{% set url_for_about = url_for('admin_about') %}
-	{% set url_for_contact = url_for('admin_contact') %}
-{% else %}
-	{% set url_for_home = url_for('home') %}
-	{% set url_for_music = url_for('music') %}
-	{% set url_for_paintings = url_for('paintings') %}
-	{% set url_for_about = url_for('about') %}
-	{% set url_for_contact = url_for('contact') %}
-{% endif %}
+{% set url_for_home = url_for('home') %}
+{% set url_for_music = url_for('music') %}
+{% set url_for_paintings = url_for('paintings') %}
+{% set url_for_about = url_for('about') %}
+{% set url_for_contact = url_for('contact') %}
 {% set url_for_login = url_for('login') %}
 {% set url_for_logout = url_for('logout') %}
 
@@ -55,70 +47,70 @@
 				<ul class="nav navbar-nav">
 					<li>
 						<a {% if 'home' == active_page %} class="active"{% endif %} style="text-align: center"
-						                                  href="{{ url_for_home }}">
-							<i class="fa fa-home center"></i>&nbsp;&nbsp;
-							Home
+						href="{{ url_for_home }}">
+						<i class="fa fa-home center"></i>&nbsp;&nbsp;
+						Home
 						</a>
 					</li>
 					<li>
 						<a {% if 'paintings' == active_page %} class="active"{% endif %} style="text-align: center"
-						                                       href="{{ url_for_paintings }}">
-							<i class="fa fa-paint-brush"></i>&nbsp;&nbsp;
-							Schilderijen
+						href="{{ url_for_paintings }}">
+						<i class="fa fa-paint-brush"></i>&nbsp;&nbsp;
+						Schilderijen
 						</a>
 					</li>
 					<li>
 						<a {% if 'music' == active_page %} class="active"{% endif %} style="text-align: center"
-						                                   href="{{ url_for_music }}">
-							<i class="fa fa-music"></i>&nbsp;&nbsp;
-							Muziek
+						href="{{ url_for_music }}">
+						<i class="fa fa-music"></i>&nbsp;&nbsp;
+						Muziek
 						</a>
 					</li>
 					<li>
 						<a {% if 'about' == active_page %} class="active"{% endif %} style="text-align: center"
-						                                   href="{{ url_for_about }}">
-							<i class="fa fa-beer"></i>&nbsp;&nbsp;
-							Over mij
+						href="{{ url_for_about }}">
+						<i class="fa fa-beer"></i>&nbsp;&nbsp;
+						Over mij
 						</a>
 					</li>
 					<li>
 						<a {% if 'contact' == active_page %} class="active"{% endif %} style="text-align: center"
-						                                     href="{{ url_for_contact }}">
-							<i class="fa fa-globe"></i>&nbsp;&nbsp;
-							Contact
+						href="{{ url_for_contact }}">
+						<i class="fa fa-globe"></i>&nbsp;&nbsp;
+						Contact
 						</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					{% if session.logged_in %}
-						<li class="dropdown">
-							<a href="#" style="text-align: center" class="dropdown-toggle" data-toggle="dropdown"
-							   role="button" aria-haspopup="true"
-							   aria-expanded="false">
-								<i class="caret"></i>&nbsp;&nbsp;
-								Toevoegen
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="{{ url_for('painting_create') }}">Schilderij</a></li>
-								<li><a href="{{ url_for('music_create') }}">Muziek</a></li>
-								<li><a href="{{ url_for('gig_create') }}">Optreden</a></li>
-							</ul>
-						</li>
-						<li>
-							<a {% if 'logout' == active_page %} class="active"{% endif %} style="text-align: center"
-							                                    href="{{ url_for_logout }}">
-								<i class="fa fa-sign-out"></i>&nbsp;&nbsp;
-								Uitloggen
-							</a>
-						</li>
+					{% if session.is_admin %}
+					<li class="dropdown">
+						<a href="#" style="text-align: center" class="dropdown-toggle" data-toggle="dropdown"
+						   role="button" aria-haspopup="true"
+						   aria-expanded="false">
+							<i class="caret"></i>&nbsp;&nbsp;
+							Toevoegen
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ url_for('painting_create') }}">Schilderij</a></li>
+							<li><a href="{{ url_for('music_create') }}">Muziek</a></li>
+							<li><a href="{{ url_for('gig_create') }}">Optreden</a></li>
+						</ul>
+					</li>
+					<li>
+						<a {% if 'logout' == active_page %} class="active"{% endif %} style="text-align: center"
+						href="{{ url_for_logout }}">
+						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;
+						Uitloggen
+						</a>
+					</li>
 					{% else %}
-						<li>
-							<a {% if 'login' == active_page %} class="active"{% endif %} style="text-align: center"
-							                                   href="{{ url_for_login }}">
-								<i class="fa fa-sign-in"></i>&nbsp;&nbsp;
-								Inloggen
-							</a>
-						</li>
+					<li>
+						<a {% if 'login' == active_page %} class="active"{% endif %} style="text-align: center"
+						href="{{ url_for_login }}">
+						<i class="fa fa-sign-in"></i>&nbsp;&nbsp;
+						Inloggen
+						</a>
+					</li>
 					{% endif %}
 				</ul>
 			</div>
@@ -141,9 +133,11 @@
 
 				<div class="footer-box-text">
 					<p>
-						Ik ben Daan, en mijn specialiteit is het opwekken van spontane orgasmes bij vrouwen. Zie ook mijn
+						Ik ben Daan, en mijn specialiteit is het opwekken van spontane orgasmes bij vrouwen. Zie ook
+						mijn
 						TellSell reclame voor speciale groepskortingen.
 					</p>
+
 					<p><a href="{{ url_for_about }}">Lees meer...</a></p>
 				</div>
 			</div>
@@ -201,7 +195,7 @@
 <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}"></script>
 
 <script type="text/javascript">
-	jQuery(document).ready(function(){
+	jQuery(document).ready(function () {
 		jQuery("#gallery").unitegallery({
 			tiles_col_width: 300,
 //			tile_enable_overlay: true,			//enable tile color overlay (on mouseover)

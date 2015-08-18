@@ -20,7 +20,7 @@ class Home(Resource):
 
 class Login(Resource):
 	def get(self):
-		return redirect(users.create_login_url(dest_url='/admin/home'))
+		return redirect(users.create_login_url(dest_url='/main/home'))
 
 
 class Logout(Resource):
@@ -30,7 +30,6 @@ class Logout(Resource):
 
 api.add_resource(Root, '/', endpoint='root')
 api.add_resource(Home, '/main/home', endpoint='home')
-api.add_resource(Home, '/admin/home', endpoint='admin_home')
 
 api.add_resource(Login, '/main/login', endpoint='login')
-api.add_resource(Logout, '/main/logout', endpoint='logout')
+api.add_resource(Logout, '/admin/logout', endpoint='logout')

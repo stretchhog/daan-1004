@@ -20,7 +20,7 @@ def before_request():
 	if user:
 		session['logged_in'] = True
 		session['user_email'] = user.email()
-		session['user_nickname'] = user.nickname()
+		session['is_admin'] = users.is_current_user_admin()
 	else:
 		session['logged_in'] = False
 

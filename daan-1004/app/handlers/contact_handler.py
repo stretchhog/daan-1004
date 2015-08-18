@@ -21,4 +21,3 @@ class Contact(Resource):
 
 
 api.add_resource(Contact, '/main/contact', endpoint='contact')
-api.add_resource(Contact, '/admin/contact', endpoint='admin_contact')

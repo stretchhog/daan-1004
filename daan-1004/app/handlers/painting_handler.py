@@ -57,19 +57,16 @@ class PhotoUploadHandler(Resource, BlobstoreUploadHandler):
 		except():
 			return self.redirect('/admin/paintings/failure')
 
-# public
-api.add_resource(PaintingList, '/main/paintings', endpoint='paintings')
-
-# admin
-api.add_resource(PaintingList, '/admin/paintings', endpoint='admin_paintings')
-api.add_resource(PaintingCreate, '/admin/paintings/create', endpoint='painting_create')
-
 
 class PaintingFailure(Resource):
 	def get(self):
 		return make_response(render_template('paintings/failure.html'))
 
+# public
+api.add_resource(PaintingList, '/main/paintings', endpoint='paintings')
 
+# admin
+api.add_resource(PaintingCreate, '/admin/paintings/create', endpoint='painting_create')
 api.add_resource(PaintingFailure, '/admin/paintings/failure', endpoint='painting_failure')
 api.add_resource(PaintingDetail, '/admin/paintings/<int:id>', endpoint='painting_detail')
 api.add_resource(PaintingDelete, '/admin/paintings/delete/<int:id>', endpoint='painting_delete')
