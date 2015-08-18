@@ -52,7 +52,6 @@
 		{% if gigs %}
 		{% for gig in gigs %}
 		<tr>
-			{{ gig.location|replace(" ", "+") }}
 			<td>{{ gig.date.strftime('%-d %b %Y %-H:%M') }}</td>
 			<td>{{ gig.band }}</td>
 			<td><a target="_blank" href="{{ 'https://www.google.nl/maps/place/' + gig.location|replace(' ','+') }} ">{{ gig.location }}</a></td>
