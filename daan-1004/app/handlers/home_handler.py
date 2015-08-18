@@ -32,4 +32,4 @@ api.add_resource(Root, '/', endpoint='root')
 api.add_resource(Home, '/main/home', endpoint='home')
 
 api.add_resource(Login, '/main/login', endpoint='login')
-api.add_resource(Logout, '/admin/logout', endpoint='logout')
+api.add_resource(Logout, '/main/logout', endpoint='logout')

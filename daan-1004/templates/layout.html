@@ -22,7 +22,11 @@
 
 {% set url_for_home = url_for('home') %}
 {% set url_for_music = url_for('music') %}
-{% set url_for_paintings = url_for('paintings') %}
+{% if session.is_admin %}
+	{% set url_for_paintings = url_for('paintings_admin') %}
+{% else %}
+	{% set url_for_paintings = url_for('paintings') %}
+{% endif %}
 {% set url_for_about = url_for('about') %}
 {% set url_for_contact = url_for('contact') %}
 {% set url_for_login = url_for('login') %}
@@ -96,6 +100,8 @@
 							<li><a href="{{ url_for('gig_create') }}">Optreden</a></li>
 						</ul>
 					</li>
+					{% endif %}
+					{% if session.logged_in %}
 					<li>
 						<a {% if 'logout' == active_page %} class="active"{% endif %} style="text-align: center"
 						href="{{ url_for_logout }}">

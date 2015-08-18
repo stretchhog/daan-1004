@@ -3,28 +3,27 @@ from google.appengine.api.images import get_serving_url
 from google.appengine.ext import blobstore
 import re
 from google.appengine.ext.blobstore import BlobInfo
-from app.forms import PaintingEditForm, PaintingCreateForm
+from app.forms import PaintingCreateForm, PaintingCreateForm
 from app.models import Painting
 
 __author__ = 'Stretchhog'
 
 def get_painting(id):
 	painting = Painting.get_by_id(id)
-	form = PaintingEditForm()
+	form = PaintingCreateForm()
 	form.title.data = painting.title
 	form.notes.data = painting.notes
-	form.key.data = painting.key
 	return painting, form
 
 def update_painting(id, data):
-	form = PaintingEditForm(data=data)
+	form = PaintingCreateForm(data=data)
 	painting = Painting.get_by_id(id)
 	painting.title = form.title.data
 	painting.notes = form.notes.data
 	return painting.put()
 
 def create_painting(data, blob_key):
-	form = PaintingCreateForm(data)
+	form = PaintingCreateForm(data=data)
 	painting = Painting(title=form.title.data, blob_key=blob_key, notes=form.notes.data)
 	return painting.put()
 

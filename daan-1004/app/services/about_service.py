@@ -20,12 +20,9 @@ def create(data):
 
 
 def get_all():
-	return Gig.query().order(Gig.date).fetch()
-
-
-def get_upcoming():
 	now = datetime.datetime.now()
-	return Gig.query(Gig.date >= now).order(Gig.date).fetch(1)
+	return Gig.query(Gig.date >= now).order(Gig.date).fetch()
+
 
 def delete_by_id(id):
 	return Gig.get_by_id(id).key.delete()

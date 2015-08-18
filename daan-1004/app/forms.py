@@ -9,12 +9,6 @@ class PaintingCreateForm(Form):
 	notes = TextAreaField('Beschrijving')
 
 
-class PaintingEditForm(Form):
-	title = StringField('Titel', validators=[DataRequired()])
-	notes = TextAreaField('Beschrijving')
-	key = HiddenField('key')
-
-
 class MusicForm(Form):
 	title = StringField(label='Titel', validators=[DataRequired()])
 	url = StringField('url')

@@ -26,7 +26,7 @@
 				</div>
 				<div>
 					<p>{{ music.notes }}</p>
-					{% if session.logged_in %}
+					{% if session.is_admin %}
 						<a href="{{ url_for('music_detail', id=music.key.id()) }}" class="btn btn-info">Edit</a>
 						<a href="{{ url_for('music_delete', id=music.key.id()) }}" class="btn btn-danger">Delete</a>
 					{% endif %}

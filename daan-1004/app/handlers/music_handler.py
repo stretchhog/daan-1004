@@ -37,7 +37,7 @@ class MusicCreate(Resource):
 	def post(self):
 		key = service.create(request.get_json())
 		if key is not None:
-			return redirect('/admin/music', 301)
+			return redirect(api.url_for(MusicList), 301)
 
 # public
 api.add_resource(MusicList, '/main/music', endpoint='music')

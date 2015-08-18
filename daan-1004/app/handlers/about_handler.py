@@ -19,7 +19,7 @@ class GigCreate(Resource):
 	def post(self):
 		key = service.create(request.get_json())
 		if key is not None:
-			return redirect('/admin/about', 301)
+			return redirect(api.url_for(About), 301)
 
 class GigDelete(Resource):
 	def get(self, id):

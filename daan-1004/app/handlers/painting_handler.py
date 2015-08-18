@@ -19,10 +19,17 @@ class PaintingList(Resource):
 			render_template("paintings/list.html", title="Schilderijen", entries=zip(paintings, images)))
 
 
+class PaintingListAdmin(Resource):
+	def get(self):
+		paintings, images = service.get_paintings()
+		return make_response(
+			render_template("paintings/admin_list.html", title="Schilderijen", entries=zip(paintings, images)))
+
+
 class PaintingDelete(Resource):
 	def get(self, id):
 		service.delete_painting(id)
-		return redirect(api.url_for(PaintingList), 301)
+		return redirect(api.url_for(PaintingListAdmin), 301)
 
 
 class PaintingDetail(Resource):
@@ -33,7 +40,7 @@ class PaintingDetail(Resource):
 	def post(self, id):
 		key = service.update_painting(id, request.get_json())
 		if key is not None:
-			return redirect(api.url_for(PaintingList), 301)
+			return redirect(api.url_for(PaintingListAdmin), 301)
 
 
 class PaintingCreate(Resource):
@@ -52,7 +59,7 @@ class PhotoUploadHandler(Resource, BlobstoreUploadHandler):
 			blob_key = parsed_header[1]['blob-key']
 			service.create_painting(request.get_json(), blob_key)
 
-			return redirect(api.url_for(PaintingList), 301)
+			return redirect(api.url_for(PaintingListAdmin), 301)
 
 		except():
 			return self.redirect('/admin/paintings/failure')
@@ -66,6 +73,7 @@ class PaintingFailure(Resource):
 api.add_resource(PaintingList, '/main/paintings', endpoint='paintings')
 
 # admin
+api.add_resource(PaintingListAdmin, '/admin/paintings', endpoint='paintings_admin')
 api.add_resource(PaintingCreate, '/admin/paintings/create', endpoint='painting_create')
 api.add_resource(PaintingFailure, '/admin/paintings/failure', endpoint='painting_failure')
 api.add_resource(PaintingDetail, '/admin/paintings/<int:id>', endpoint='painting_detail')
