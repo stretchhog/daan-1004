@@ -19,7 +19,7 @@
 <div>
 	{% for painting, image in entries %}
 	<div style="float: left; margin-right: 10px">
-		<img style="width: 200px;" class="img-responsive" src="{{ image }}">
+		<img style="width: 200px; height: 300px" class="img-responsive" src="{{ image }}">
 		<a href="{{ url_for('painting_detail', id=painting.key.id()) }}" class="btn btn-info">Aanpassen</a>
 		<a href="{{ url_for('painting_delete', id=painting.key.id()) }}" class="btn btn-danger">Verwijder</a>
 	</div>
