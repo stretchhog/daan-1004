@@ -2,36 +2,33 @@
 {% set active_page = "music" %}
 {% set title = "Daan Lebens | Muziek" %}
 {% block title %}
-	<section id="title" class="peach">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6">
-					<h1>Muziek</h1>
+<section id="title" class="peach">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>Muziek</h1>
 
-					<p>Zie hier mijn zangkutsen</p>
-				</div>
+				<p>Zie hier mijn zangkutsen</p>
 			</div>
 		</div>
-	</section><!--/#title-->
+	</div>
+</section><!--/#title-->
 {% endblock %}
 {% block body %}
-	{% for music in musics %}
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				{{ music.title }}
-			</div>
-			<div class="panel-body">
-				<div class="embed-responsive embed-responsive-16by9">
-					<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ music.url }}?rel=0" frameborder="0" allowfullscreen></iframe>
-				</div>
-				<div>
-					<p>{{ music.notes }}</p>
-					{% if session.is_admin %}
-						<a href="{{ url_for('music_detail', id=music.key.id()) }}" class="btn btn-info">Edit</a>
-						<a href="{{ url_for('music_delete', id=music.key.id()) }}" class="btn btn-danger">Delete</a>
-					{% endif %}
-				</div>
-			</div>
-		</div>
-	{% endfor %}
+{% for music in musics %}
+<div class="col-lg-4 col-md-6 col-sm-6">
+	<div class="embed-responsive embed-responsive-16by9">
+		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ music.url }}?rel=0" frameborder="0"
+		        allowfullscreen></iframe>
+	</div>
+	<div style="margin-bottom: 10px">
+		<h4>{{ music.title }}</h4>
+		<p>{{ music.notes }}</p>
+		{% if session.is_admin %}
+		<a href="{{ url_for('music_detail', id=music.key.id()) }}" class="btn btn-info">Edit</a>
+		<a href="{{ url_for('music_delete', id=music.key.id()) }}" class="btn btn-danger">Delete</a>
+		{% endif %}
+	</div>
+</div>
+{% endfor %}
 {% endblock %}
