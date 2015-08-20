@@ -16,25 +16,40 @@
 {% endblock %}
 {% block body %}
 <div class="col-lg-7">
-	<div class="col-lg-5">
-		<img class="img-responsive" src="{{ url_for('static', filename='images/Daan_website.jpg') }}"/>
+	<div class="col-lg-5 col-md-6 col-sm-12">
+		<img class="img-responsive" src="{{ url_for('static', filename='images/about_1.jpg') }}"/>
 	</div>
-	<p>Mijn naam is Daan Lebens, 28 jaar en heb inmiddels de nodige ervaring als kunstschilder en blueszanger.</p>
+	<p>Mijn naam is Daan Lebens, 28 jaar, uit het Zuiden des Lands en ben actief als kunstschilder en blueszanger.</p>
 
-	<p>Mijn schilderijen zijn een soloproject, ook altijd zodanig geweest. Als autoditact van start gegaan en mezelf
-		blijven uitdagen. Wanneer passie en doorzettingsvermogen samen gaan met een beetje verstandig uitkiezen van de
-		juiste bronnen kun je jezelf aardig wat leren. Ik wil mezelf dan ook graag blijven doorontwikkelen.</p>
+	<p><a href="{{ url_for_paintings }}">Mijn schilderijen</a> zijn een soloproject, ook altijd zodanig geweest. Als
+		autodidact van start gegaan en mezelf
+		blijven uitdagen. Plezier en passie komen samen in het altijd blijven proberen het komende schilderij weer nét
+		iets mooier te krijgen dan het vorige. Het is een bron van rust, mogelijkheid tot uiten en soms ook andere
+		mensen hun woon- of werkruimte te helpen het meer als eigen te laten ervaren. Ik ben er blij mee dat ik daar
+		mijn steentje aan bij mag dragen.</p>
 
-	<p>Ik ben als zanger actief in 2 verschillende bands. Liquor Lebens and the Booze Boys (LL+BB) is een lokale
-		rootsbluesband. In oorspronkelijke vorm met authentieke stijl, isdeze band een grote ode aan de blueshelden van
-		weleer, zoals john lee hooker, cuby+blizzards, Freddie King, en vele anderen.</p>
+	<p>Daarnaast ben ik als zanger actief in 2 verschillende bands. Allereerst is er Liquor Lebens and the Booze Boys
+		(LL+BB). Dit is een lokale Roots-Bluesband. In oorspronkelijke vorm met authentieke stijl, is deze band een
+		grote ode aan de blueshelden van weleer, zoals John Lee Hooker, Cuby+Blizzards, Freddie King, en vele anderen.
+		Samen met mijn medemuzikanten Chris Ariaans (gitaar), Dolf Strijkers (contrabas) en Tim Gerrits (drums) staat
+		LL+BB gegarandeerd voor de authentieke blues van weleer… in een gezellige borrelsfeer.</p>
 
-	<p>Daarnaast zing ik ook in de band Damp’ Loose. Een unieke mix van Nederlanders en Belgen, ervaren muzikanten en
-		talenten, is hier een wat breder scala de stijl van de band. Blues, Bluesrock, Rock en zelfs af en toe een
-		knipoog naar coutry maken van Damp’ Loose een gevarieerde mix Americana.</p>
+	<p>Ook zing ik in de recent opgerichte band Damp’ Loose. Een unieke mix van Nederlanders en Belgen en ervaren
+		muzikanten en talenten, is hier een wat breder scala de stijl van de band. Blues, Bluesrock, Rock en zelfs af en
+		toe een kleine uitstap naar country maken van Damp’ Loose een gevarieerde mix Americana. Ik ben er dan ook trots
+		op om de vocale lijn te bezorgen bij topmuzikanten als drummer Robert Theys, bassist Jan Vermeulen (allebei
+		bekend van de Belgische succesformatie ‘the catsmokes’) en de zeer getalenteerde rookie Tom Theunissen.</p>
 
-	<p>Geinteresseerd in een schilderij of het boeken van LL+BB dan wel Damp’ Loose? Neem gerust vrijblijvend contact
-		met mij op via de contactpagina, en ik zal zo snel mogelijk reageren.</p>
+	<div class="col-lg-6 col-md-8 col-sm-12" style="float: right">
+		<img class="img-responsive" src="{{ url_for('static', filename='images/about_2.jpg') }}"/>
+	</div>
+
+	<p>Voor fragmenten van Damp’Loose, LL+BB en ook enkele zijdelingse opnames/muzikale projecten kunt u bij <a
+			href="{{ url_for_music }}">Muziek</a>
+		terecht.</p>
+
+	<p>Geïnteresseerd in een schilderij of het boeken van LL+BB dan wel Damp’ Loose? Neem gerust vrijblijvend contact
+		met mij op via <a href="{{ url_for_contact }}">de contactpagina</a>, en ik zal zo snel mogelijk reageren.</p>
 </div>
 
 <div class="col-lg-offset-1"></div>
@@ -54,7 +69,8 @@
 		<tr>
 			<td>{{ gig.date.strftime('%-d %b %Y %-H:%M') }}</td>
 			<td>{{ gig.band }}</td>
-			<td><a target="_blank" href="{{ 'https://www.google.nl/maps/place/' + gig.location|replace(' ','+') }} ">{{ gig.location }}</a></td>
+			<td><a target="_blank" href="{{ 'https://www.google.nl/maps/place/' + gig.location|replace(' ','+') }} ">{{
+				gig.location }}</a></td>
 		</tr>
 		<tr>
 			<td colspan="3">

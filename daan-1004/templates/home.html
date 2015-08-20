@@ -2,21 +2,31 @@
 {% set active_page = "home" %}
 {% set title = "Daan Lebens | Home" %}
 {% block title %}
-	<section id="title" class="peach">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<h1>Home</h1>
+<section id="title" class="peach">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Home</h1>
 
-					<p>Welkom op mijn website!</p>
-				</div>
+				<p>Welkom op mijn website!</p>
 			</div>
 		</div>
-	</section><!--/#title-->
+	</div>
+</section><!--/#title-->
 {% endblock %}
 {% block body %}
+<div class="col-lg-5 col-md-6 col-sm-12">
+	<img class="img-responsive" src="{{ url_for('static', filename='images/home_1.jpg') }}"/>
+</div>
 <p>Welkom op mijn geheel vernieuwde website. Deze is nu ook toegankelijk voor tablets en smartphones!</p>
-<p>Op deze website zijn voorbeelden van mijn schilderijen te vinden. Geinterreseerd in een van de doeken of zelf ideeen voor een handgemaakt schilderij, volledig naar eigen wens? Niets is te gek, neem gerust contact met mij.</p>
-<p>Daarnaast is er uiteraard ook genoeg blues te vinden. Onder de kop muziek zijn dan ook fragmenten te vinden van de beide bands waar ik als zanger actief ben: LL+BB en Damp’ Loose. Ook staat mijn concertagenda online, zodat u geen optreden hoeft te missen!</p>
+<p>Op deze website zijn voorbeelden van <a href="{{ url_for_paintings }}">mijn schilderijen</a> te vinden. Wilt u zelf
+	een handgemaakt olieverfschilderij thuis hebben? Eentje van de afbeeldingen op de website of heeft u zelf een foto
+	of idee voor een schilderij helemaal naar uw eigen persoonlijke wens en smaak? De mogelijkheden zijn eindeloos, neem
+	gerust vrijblijvend <a href="{{ url_for_contact }}">contact</a> op!</p>
+<p>Daarnaast is er uiteraard ook genoeg blues te vinden. Onder de kop <a href="{{ url_for_music }}">muziek</a> zijn dan
+	ook fragmenten te vinden van de beide bands waar ik als zanger actief ben: LL+BB en Damp’ Loose. Ook staat mijn
+	concertagenda online, zodat u geen optreden hoeft te missen! Kijk bij <a href="{{ url_for_about }}">'over mij'</a>
+	voor de concertagenda en achtergrond informatie van de twee verschillende bands.</p>
 <p>Neus dus gerust naar hartenlust rond, er is genoeg te ontdekken. Veel plezier op de website, en All the Best!</p>
+<h4>Daan Lebens</h4>
 {% endblock %}
