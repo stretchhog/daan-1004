@@ -101,23 +101,24 @@
 						</ul>
 					</li>
 					{% endif %}
-					{% if session.logged_in %}
-					<li>
-						<a {% if 'logout' == active_page %} class="active"{% endif %} style="text-align: center"
-						href="{{ url_for_logout }}">
-						<i class="fa fa-sign-out"></i>&nbsp;&nbsp;
-						Uitloggen
-						</a>
-					</li>
-					{% else %}
-					<li>
-						<a {% if 'login' == active_page %} class="active"{% endif %} style="text-align: center"
-						href="{{ url_for_login }}">
-						<i class="fa fa-sign-in"></i>&nbsp;&nbsp;
-						Inloggen
-						</a>
-					</li>
-					{% endif %}
+
+					<!--{% if session.logged_in %}-->
+					<!--<li>-->
+						<!--<a {% if 'logout' == active_page %} class="active"{% endif %} style="text-align: center"-->
+						<!--href="{{ url_for_logout }}">-->
+						<!--<i class="fa fa-sign-out"></i>&nbsp;&nbsp;-->
+						<!--Uitloggen-->
+						<!--</a>-->
+					<!--</li>-->
+					<!--{% else %}-->
+					<!--<li>-->
+						<!--<a {% if 'login' == active_page %} class="active"{% endif %} style="text-align: center"-->
+						<!--href="{{ url_for_login }}">-->
+						<!--<i class="fa fa-sign-in"></i>&nbsp;&nbsp;-->
+						<!--Inloggen-->
+						<!--</a>-->
+					<!--</li>-->
+					<!--{% endif %}-->
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -152,11 +153,10 @@
 				<div class="footer-box-text footer-box-text-contact">
 					<p>
 						<i class="fa fa-globe"></i> <strong>Adres:</strong> Harrecoven 18, 6125 AP, Obbicht<br>
-						<i class="fa fa-envelope-o"></i> <strong>Email:</strong> mailto@daanlebens.com<br>
 						<i class="fa fa-mobile"></i> <strong>Mobiel:</strong> +31 6 145 166 05<br>
 					</p>
 				</div>
-				<a href="{{ url_for_contact }}">Less meer...</a>
+				<a href="{{ url_for_contact }}">Stuur hier een email...</a>
 			</div>
 		</div>
 		<div class="row">
