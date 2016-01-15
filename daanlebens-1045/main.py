@@ -14,6 +14,7 @@ api = Api(app)
 # import routes
 from app.handlers import home_handler, painting_handler, music_handler, contact_handler, about_handler
 
+
 @app.before_request
 def before_request():
 	user = users.get_current_user()
