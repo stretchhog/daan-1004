@@ -1,3 +1,7 @@
+import logging
+import sys
+import traceback
+
 from app.forms import ContactForm
 from google.appengine.api import mail
 
@@ -25,5 +29,11 @@ BERICHT:
 %s
 	""" % (form.name.data, form.email.data, form.phone.data, form.message.data)
 
-	message.send()
-	return None
+	try:
+		message.send()
+	except:
+		exc_type, exc_value, exc_traceback = sys.exc_info()
+		lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
+		logging.error(''.join('!! ' + line for line in lines))
+	finally:
+		return None
