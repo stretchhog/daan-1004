@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% set active_page = "contact_admin" %}
+{% set title = "Daan Lebens | Contact" %}
+{% block title %}
+<section id="title" class="peach">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Contact test!</h1>
+
+				<p>Es kijken of we het werkend gaan krijgen</p>
+			</div>
+		</div>
+	</div>
+</section><!--/#title-->
+<iframe width="100%" height="215px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2509.3231861437407!2d5.7746431000000005!3d51.0286514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c0c60505008fab%3A0xe3d11a96709b8eaa!2sHarrecoven+18%2C+6125+AP+Obbicht!5e0!3m2!1sen!2snl!4v1440006243283"></iframe>
+{% endblock %}
+{% block body %}
+<section id="contact-page" class="container">
+	<div class="row">
+		<div class="col-sm-6">
+			<h4>Contact formulier</h4>
+
+			<div class="status alert alert-success" style="display: none"></div>
+			<div class="col-sm-10">
+				<form id="main-contact-form" class="contact-form" name="contact-form" method="post" action=""
+				      role="form">
+					<div class="row">
+						<div class="form-group has-feedback {% if form.name.errors %} has-error {% endif %}">
+							<input id="{{ form.name.id }}" name="{{ form.name.name }}" type="text" class="form-control"
+							       placeholder="Naam"
+							       value="{% if form.name.data %} {{ form.name.data }} {% endif %}">
+							{% for error in form.name.errors %}
+							<p class="help-block">{{ error }}</p>
+							{% endfor %}
+						</div>
+						<div class="form-group {% if form.email.errors %} has-error {% endif %}">
+							<input id="{{ form.email.id }}" name="{{ form.email.name }}" type="text"
+							       class="form-control"
+							       placeholder="Email adres"
+							       value="{% if session.logged_in %} {{ session.user_email }} {% elif form.email.data %} {{ form.email.data }} {% endif %}">
+							{% for error in form.email.errors %}
+							<p class="help-block">{{ error }}</p>
+							{% endfor %}
+						</div>
+						<div class="form-group">
+							<input id="{{ form.phone.id }}" name="{{ form.phone.name }}" type="text"
+							       class="form-control"
+							       placeholder="Telefoonnummer (optioneel)"
+							       value="{% if form.phone.data %} {{ form.phone.data }} {% endif %}">
+						</div>
+						<div class="form-group {% if form.message.errors %} has-error {% endif %}">
+							<textarea id="{{ form.message.id }}" name="{{ form.message.name }}" class="form-control"
+							          placeholder="Bericht" rows="4">{% if form.message.data %}{{ form.message.data }}{%
+								endif %}</textarea>
+							{% for error in form.message.errors %}
+							<p class="help-block">{{ error }}</p>
+							{% endfor %}
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Verstuur</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+		<!--/.col-sm-8-->
+		<div class="col-sm-6">
+			<!-- Classic Heading -->
+			<h4 class="classic-title"><span>Informatie</span></h4>
+
+			<!-- Info - Icons List -->
+			<p><i class="fa fa-globe"> </i> <strong>Adres:</strong> Harrecoven 18, 6125 AP, Obbicht</p>
+
+			<p><i class="fa fa-mobile"></i> <strong>Mobiel:</strong> +31 6 145 166 05</p>
+			<br>
+			<!--&lt;!&ndash; Classic Heading &ndash;&gt;-->
+			<!--<h4 class="classic-title"><span>Werktijden</span></h4>-->
+
+			<!--&lt;!&ndash; Info - List &ndash;&gt;-->
+			<!--<p><strong>Monday - Friday</strong> - Soms</p>-->
+
+			<!--<p><strong>Saturday</strong> - 01:00 tot 06:00</p>-->
+
+			<!--<p><strong>Sunday</strong> - Niet</p>-->
+		</div>
+		<!--/.col-sm-4-->
+	</div>
+</section><!--/#contact-page-->
+{% endblock %}

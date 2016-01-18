@@ -1,7 +1,5 @@
 from app.forms import ContactForm
-from werkzeug.exceptions import abort
 from google.appengine.api import mail
-from google.appengine.api import users
 
 __author__ = 'tvancann'
 
