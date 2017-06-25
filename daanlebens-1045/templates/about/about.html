@@ -2,93 +2,95 @@
 {% set active_page = "about" %}
 {% set title = "Daan Lebens | Over mij" %}
 {% block title %}
-<section id="title" class="peach">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<h1>Over mij</h1>
+    <section id="title" class="peach">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>Over mij</h1>
 
-				<p>Alles wat U wel en niet wil weten rond mijn persoontje.</p>
-			</div>
-		</div>
-	</div>
-</section><!--/#title-->
+                    <p>Alles wat U wel en niet wil weten rond mijn persoontje.</p>
+                </div>
+            </div>
+        </div>
+    </section><!--/#title-->
 {% endblock %}
 {% block body %}
-<div class="col-lg-7">
-	<div class="col-lg-5 col-md-6 col-sm-12">
-		<img class="img-responsive" src="{{ url_for('static', filename='images/about_1.jpg') }}"/>
-	</div>
-	<p>Mijn naam is Daan Lebens, 28 jaar, uit het Zuiden des Lands en ben actief als kunstschilder en blueszanger.</p>
+    <div class="col-lg-12">
+        <div class="col-lg-4 col-md-4 col-sm-6">
+            <img class="img-responsive" src="{{ url_for('static', filename='images/about_1.jpg') }}"/>
+        </div>
+        <p>Mijn naam is Daan Lebens, 30 jaar, uit het Zuiden des Lands en ben actief als kunstschilder.
+            href="{{ url_for_paintings }}">Mijn schilderijen</a> zijn een soloproject, ook altijd zodanig geweest. Ik
+            ben als autodidact van start gegaan en mezelf blijven uitdagen. Plezier en passie komen samen in het altijd
+            blijven proberen het komende schilderij weer nét iets mooier te krijgen dan het vorige. Het is een bron van
+            rust, mogelijkheid tot uiten en soms ook anderen hun woon- of werkruimte te helpen het meer als eigen te
+            laten ervaren. Ik ben vereerd dat ik daar mijn steentje aan bij mag dragen.
+        </p>
 
-	<p><a href="{{ url_for_paintings }}">Mijn schilderijen</a> zijn een soloproject, ook altijd zodanig geweest. Als
-		autodidact van start gegaan en mezelf
-		blijven uitdagen. Plezier en passie komen samen in het altijd blijven proberen het komende schilderij weer nét
-		iets mooier te krijgen dan het vorige. Het is een bron van rust, mogelijkheid tot uiten en soms ook anderen hun
-		woon- of werkruimte te helpen het meer als eigen te laten ervaren. Ik ben vereerd dat ik daar mijn steentje aan
-		bij mag dragen.</p>
+        <p>Daarnaast zijn er op deze site muzikale fragmenten te vinden. In het verleden ben ik een tijd actief geweest
+            als (blues-)zanger in verschillende bands. Door enkele tegenslagen ben ik hier helaas mee moeten stoppen.
+            Tegenwoordig maak ik (soms spontaan, soms bewust voorbereid) met bevriende muzikanten opnames die ik onder
+            het kopje <a href="{{ url_for_music }}">muziek</a> van tijd tot tijd zal plaatsen. Soms covers, soms eigen
+            nummers. In welke hoedanigheid en met welke bevriende muzikant ik ook samenwerk, het is altijd met het oog
+            op hobby als intentie.
 
-	<p>Daarnaast ben ik als zanger actief in 2 verschillende muzikale projecten. Zo zing ik in de recent opgerichte band
-		Damp’Loose. Een unieke mix van Nederlanders en Belgen en ervaren muzikanten en talenten, is hier een wat breder
-		scala de huisstijl van de band. Blues, Bluesrock, Rock en zelfs af en toe een kleine uitstap naar Country maken
-		van Damp’Loose een gevarieerde mix Americana. Ik ben er dan ook trots op om de vocale lijn te bezorgen bij
-		topmuzikanten als drummer Robert Theys, bassist Jan Vermeulen (allebei bekend van de
-		Belgische succesformatie ‘the catsmokes’) en de zeer getalenteerde rookie Tom Theunissen op gitaar.</p>
+        </p>
 
-	<p>Ook vorm ik een duo met mijn goede vriend en geweldige allround-bluesgitarist Chris Ariaans. RootsBlues,
-		(doorgaans) akoestisch, rauw, eerlijk en in directe vorm gebracht. Aangezien we geen grote instrumenten of
-		apparatuur bij ons hebben is een klein hoekje in een kroeg of andere omgeving genoeg om ons te boeken en de
-		blues in haar puurste verschijning over te brengen.</p>
+        <p>Verder ben ik sinds kort begonnen met de voorbereidingen van mijn eerste boek. Of er iets zinnigs uit gaat
+            komen, zal simpelweg nog moeten blijken. Wellicht dat ik in de toekomst op deze site iets meer over dit
+            project vertel.
+        </p>
 
-	<div class="col-lg-6 col-md-8 col-sm-12" style="float: right">
-		<img class="img-responsive" src="{{ url_for('static', filename='images/about_2.jpg') }}"/>
-	</div>
+        <div class="col-lg-4 col-md-4 col-sm-8" style="float: right">
+            <img class="img-responsive" src="{{ url_for('static', filename='images/about_2.jpg') }}"/>
+        </div>
 
-	<p>Voor fragmenten van Damp’Loose, mijn duoproject met Chris Ariaans en ook enkele zijdelingse opnames/muzikale
-		projecten kunt U bij <a href="{{ url_for_music }}">Muziek</a> terecht.</p>
+        <p>Wilt u meer van mij weten? Of wilt u een specifieke tip aangaande het schilderen? Of heeft u een volledig
+            andere reden om contact te zoeken? Op de <a href="{{ url_for_contact }}">de contactpagina</a> staat precies
+            hoe u mij kunt benaderen, voel u vrij en welkom dit ook te doen. Ik garandeer u dat ik zo snel mogelijk met
+            een respons contact met u zal opnemen.
+        </p>
 
-	<p>Geïnteresseerd in een schilderij of het boeken van Chris en mij, dan wel Damp’Loose? Neem gerust vrijblijvend contact
-		met mij op via <a href="{{ url_for_contact }}">de contactpagina</a>, en ik zal zo snel mogelijk reageren.</p>
-</div>
+    </div>
 
-<div class="col-lg-offset-1"></div>
-<div class="col-lg-4">
-	<h4>Komende optredens</h4>
-	<table class="table table-condensed table-striped table-responsive">
-		<thead>
-		<tr>
-			<th>Wanneer</th>
-			<th>Band</th>
-			<th>Waar</th>
-		</tr>
-		</thead>
-		<tbody>
-		{% if gigs %}
-		{% for gig in gigs %}
-		<tr>
-			<td>{{ gig.date.strftime('%-d %b %Y %-H:%M') }}</td>
-			<td>{{ gig.band }}</td>
-			<td><a target="_blank" href="{{ 'https://www.google.nl/maps/place/' + gig.location|replace(' ','+') }} ">{{
-				gig.location }}</a></td>
-		</tr>
-		<tr>
-			<td colspan="3">
-				<p style="font-size: 12px"> Opmerkingen: {{ gig.notes }}</p>
-				{% if session.is_admin %}
-				<p>
-					<a href="{{ url_for('gig_detail', id=gig.key.id()) }}" class="btn btn-info">Edit</a>
-					<a href="{{ url_for('gig_delete', id=gig.key.id()) }}" class="btn btn-danger">Delete</a>
-				</p>
-				{% endif %}
-			</td>
-		</tr>
-		{% endfor %}
-		{% else %}
-		<tr>
-			<td colspan="3">Geen optredens gepland</td>
-		</tr>
-		{% endif %}
-		</tbody>
-	</table>
-</div>
+    {#<div class="col-lg-offset-1"></div>#}
+    {#<div class="col-lg-4">#}
+    {#	<h4>Komende optredens</h4>#}
+    {#	<table class="table table-condensed table-striped table-responsive">#}
+    {#		<thead>#}
+    {#		<tr>#}
+    {#			<th>Wanneer</th>#}
+    {#			<th>Band</th>#}
+    {#			<th>Waar</th>#}
+    {#		</tr>#}
+    {#		</thead>#}
+    {#		<tbody>#}
+    {#		{% if gigs %}#}
+    {#		{% for gig in gigs %}#}
+    {#		<tr>#}
+    {#			<td>{{ gig.date.strftime('%-d %b %Y %-H:%M') }}</td>#}
+    {#			<td>{{ gig.band }}</td>#}
+    {#			<td><a target="_blank" href="{{ 'https://www.google.nl/maps/place/' + gig.location|replace(' ','+') }} ">{{#}
+    {#				gig.location }}</a></td>#}
+    {#		</tr>#}
+    {#		<tr>#}
+    {#			<td colspan="3">#}
+    {#				<p style="font-size: 12px"> Opmerkingen: {{ gig.notes }}</p>#}
+    {#				{% if session.is_admin %}#}
+    {#				<p>#}
+    {#					<a href="{{ url_for('gig_detail', id=gig.key.id()) }}" class="btn btn-info">Edit</a>#}
+    {#					<a href="{{ url_for('gig_delete', id=gig.key.id()) }}" class="btn btn-danger">Delete</a>#}
+    {#				</p>#}
+    {#				{% endif %}#}
+    {#			</td>#}
+    {#		</tr>#}
+    {#		{% endfor %}#}
+    {#		{% else %}#}
+    {#		<tr>#}
+    {#			<td colspan="3">Geen optredens gepland</td>#}
+    {#		</tr>#}
+    {#		{% endif %}#}
+    {#		</tbody>#}
+    {#	</table>#}
+    {#</div>#}
 {% endblock %}

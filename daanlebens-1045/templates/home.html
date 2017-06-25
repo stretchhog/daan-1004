@@ -2,32 +2,40 @@
 {% set active_page = "home" %}
 {% set title = "Daan Lebens | Home" %}
 {% block title %}
-<section id="title" class="peach">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<h1>Home</h1>
+    <section id="title" class="peach">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>Home</h1>
 
-				<p>Welkom op mijn website!</p>
-			</div>
-		</div>
-	</div>
-</section><!--/#title-->
+                    <p>Welkom op mijn website!</p>
+                </div>
+            </div>
+        </div>
+    </section><!--/#title-->
 {% endblock %}
 {% block body %}
-<div class="col-lg-5 col-md-6 col-sm-12">
-	<img class="img-responsive" src="{{ url_for('static', filename='images/home_1.jpg') }}"/>
-</div>
-<p>Welkom op mijn website. Deze is geheel toegankelijk gemaakt voor tablets en smartphones.</p>
-<p>Op deze website zijn <a href="{{ url_for_paintings }}">mijn schilderijen</a> te vinden. Wilt u zelf
-	een handgemaakt olieverfschilderij thuis hebben? Eentje van de afbeeldingen op de website of heeft u zelf een foto
-	of idee voor een schilderij helemaal naar uw eigen persoonlijke wens en smaak? De mogelijkheden zijn eindeloos, neem
-	gerust vrijblijvend <a href="{{ url_for_contact }}">contact</a> op!</p>
-<p>Daarnaast is er ook genoeg muziek te vinden. Onder de kop <a href="{{ url_for_music }}">muziek</a> zijn
-	fragmenten te vinden waar ik voornamelijk (maar niet uitsluitend) als zanger actief was, maar ook samenwerkingen met bevriende muzikanten, al dan niet spontaan opgenomen. Kijk bij <a href="{{ url_for_about }}">'over mij'</a> voor meer achtergrondinformatie.</p>
-<p>Ik nodig u dan ook van harte uit om op deze website regelmatig een kijkje te nemen. Er zullen in de toekomst telkens
-	nieuwe schilderijen en muziekfragmenten worden toegevoegd. Neus dus gerust naar hartenlust rond, er is genoeg te
-	ontdekken. Ik wens U veel plezier op de website! </p>
-<p>All the Best!</p>
-<h4>Daan Lebens</h4>
+    <div class="col-lg-5 col-md-6 col-sm-12">
+        <img class="img-responsive" src="{{ url_for('static', filename='images/home_1.jpg') }}"/>
+    </div>
+    <p>Welkom op mijn website. Deze is geheel toegankelijk gemaakt voor tablets en smartphones.</p>
+
+    <p>Op deze website zijn <a href="{{ url_for_paintings }}">mijn schilderijen</a> te vinden. Wilt u zelf een
+        handgemaakt olieverfschilderij thuis hebben? Eentje van de afbeeldingen op de website of heeft u zelf een foto
+        of idee voor een schilderij helemaal naar uw eigen persoonlijke wens en smaak? De mogelijkheden zijn eindeloos,
+        neem gerust vrijblijvend <a href="{{ url_for_contact }}">contact</a> op!
+
+    <p>Daarnaast is er ook genoeg muziek te vinden. Onder de kop <a href="{{ url_for_music }}">muziek</a> zijn
+        fragmenten te vinden van waar ik voornamelijk (maar niet uitsluitend) als zanger actief ben. Het zijn zowel
+        fragmenten van mij in de bands waar ik voorheen in actief was, maar ook samenwerkingen met bevriende muzikanten,
+        al dan niet spontaan opgenomen. Kijk bij <a href="{{ url_for_about }}">over mij</a> voor meer achtergrond
+        informatie.
+
+    <p>Ik nodig u dan ook van harte uit om op deze website regelmatig een kijkje te nemen. Er zullen in de toekomst
+        telkens nieuwe schilderijen en muziekfragmenten worden toegevoegd. Neus dus gerust naar hartenlust rond, er is
+        genoeg te ontdekken. Ik wens U veel plezier op de website!
+    </p>
+
+    <p>All the Best!</p>
+    <h4>Daan Lebens</h4>
 {% endblock %}

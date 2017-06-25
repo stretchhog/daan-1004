@@ -8,66 +8,66 @@ from app.services import painting_service as service
 from main import api
 from werkzeug.http import parse_options_header
 
-
 __author__ = 'Stretchhog'
 
 
 class PaintingList(Resource):
-	def get(self):
-		paintings, images = service.get_paintings()
-		return make_response(
-			render_template("paintings/list.html", title="Schilderijen", entries=zip(paintings, images)))
+    def get(self):
+        paintings, images = service.get_paintings()
+        return make_response(
+            render_template("paintings/list.html", title="Schilderijen", entries=zip(paintings, images)))
 
 
 class PaintingListAdmin(Resource):
-	def get(self):
-		paintings, images = service.get_paintings()
-		return make_response(
-			render_template("paintings/admin_list.html", title="Schilderijen", entries=zip(paintings, images)))
+    def get(self):
+        paintings, images = service.get_paintings()
+        return make_response(
+            render_template("paintings/admin_list.html", title="Schilderijen", entries=zip(paintings, images)))
 
 
 class PaintingDelete(Resource):
-	def get(self, id):
-		service.delete_painting(id)
-		return redirect(api.url_for(PaintingListAdmin), 301)
+    def get(self, id):
+        service.delete_painting(id)
+        return redirect(api.url_for(PaintingListAdmin), 301)
 
 
 class PaintingDetail(Resource):
-	def get(self, id):
-		painting, form = service.get_painting(id)
-		return make_response(render_template('paintings/detail.html', painting=painting, form=form))
+    def get(self, id):
+        painting, form = service.get_painting(id)
+        return make_response(render_template('paintings/detail.html', painting=painting, form=form))
 
-	def post(self, id):
-		key = service.update_painting(id, request.get_json())
-		if key is not None:
-			return redirect(api.url_for(PaintingListAdmin), 301)
+    def post(self, id):
+        key = service.update_painting(id, request.get_json())
+        if key is not None:
+            return redirect(api.url_for(PaintingListAdmin), 301)
 
 
 class PaintingCreate(Resource):
-	def get(self):
-		form = PaintingCreateForm()
-		return make_response(render_template('paintings/create.html', form=form,
-		                                     upload_url=blobstore.create_upload_url('/admin/upload')))
+    def get(self):
+        form = PaintingCreateForm()
+        return make_response(render_template('paintings/create.html', form=form,
+                                             upload_url=blobstore.create_upload_url('/admin/upload')))
 
 
 class PhotoUploadHandler(Resource, BlobstoreUploadHandler):
-	def post(self):
-		try:
-			f = request.files['file']
-			header = f.headers['Content-Type']
-			parsed_header = parse_options_header(header)
-			blob_key = parsed_header[1]['blob-key']
-			service.create_painting(request.get_json(), blob_key)
+    def post(self):
+        try:
+            f = request.files['file']
+            header = f.headers['Content-Type']
+            parsed_header = parse_options_header(header)
+            blob_key = parsed_header[1]['blob-key']
+            service.create_painting(request.get_json(), blob_key)
 
-			return redirect(api.url_for(PaintingListAdmin), 301)
+            return redirect(api.url_for(PaintingListAdmin), 301)
 
-		except():
-			return self.redirect('/admin/paintings/failure')
+        except():
+            return self.redirect('/admin/paintings/failure')
 
 
 class PaintingFailure(Resource):
-	def get(self):
-		return make_response(render_template('paintings/failure.html'))
+    def get(self):
+        return make_response(render_template('paintings/failure.html'))
+
 
 # public
 api.add_resource(PaintingList, '/main/paintings', endpoint='paintings')
